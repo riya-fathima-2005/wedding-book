@@ -1,0 +1,150 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="edit-venue-page">
+  <div class="container py-5">
+    <div class="edit-card">
+      <!-- HEADING -->
+
+      <div class="edit-header">
+        <h2 class="edit-title">Edit Venue</h2>
+
+        <p class="edit-subtitle">Update venue details</p>
+      </div>
+
+      <!-- FORM -->
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- NAME -->
+
+        <div class="form-group-custom">
+          <label class="custom-label"> Venue Name </label>
+
+          <input
+            type="text"
+            name="name"
+            value="{{ venue.name }}"
+            class="custom-input"
+            required
+          />
+        </div>
+
+        <!-- LOCATION -->
+
+        <div class="form-group-custom">
+          <label class="custom-label"> Location </label>
+
+          <input
+            type="text"
+            name="location"
+            value="{{ venue.location }}"
+            class="custom-input"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label> Bride Name </label>
+
+          <input
+            type="text"
+            name="bride_name"
+            value="{{ venue.bride_name }}"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label> Groom Name </label>
+
+          <input
+            type="text"
+            name="groom_name"
+            value="{{ venue.groom_name }}"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Status</label>
+
+          <select name="status" class="form-control">
+            <option
+              value="Available"
+              {%
+              if
+              venue.status=""
+              ="Available"
+              %}selected{%
+              endif
+              %}
+            >
+              Available
+            </option>
+
+            <option
+              value="Booked"
+              {%
+              if
+              venue.status=""
+              ="Booked"
+              %}selected{%
+              endif
+              %}
+            >
+              Booked
+            </option>
+          </select>
+        </div>
+
+        <!-- PRICE -->
+
+        <div class="form-group-custom">
+          <label class="custom-label"> Price </label>
+
+          <input
+            type="number"
+            name="price"
+            value="{{ venue.price }}"
+            class="custom-input"
+            required
+          />
+        </div>
+
+        <!-- DESCRIPTION -->
+
+        <div class="form-group-custom">
+          <label class="custom-label"> Description </label>
+
+          <textarea
+            name="description"
+            rows="5"
+            class="custom-input custom-textarea"
+            required
+          >
+{{ venue.description }}</textarea
+          >
+        </div>
+
+        <!-- IMAGE -->
+
+        <div class="form-group-custom">
+          <label class="custom-label"> Venue Image </label>
+
+          <input type="file" name="image" class="custom-input file-input" />
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="button-group">
+          <button type="submit" class="update-btn">Update Venue</button>
+
+          <a href="{% url 'venues' %}" class="cancel-btn"> Cancel </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

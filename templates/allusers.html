@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+
+    <h1>All Users</h1>
+
+    <a href="{% url 'add_user' %}" class="add-btn">
+        Add User
+    </a>
+
+</div>
+
+<form method="GET">
+
+    <input
+        style="padding:10px"
+        type="text"
+        name="search"
+        placeholder="Search user"
+        value="{{ request.GET.search }}"
+    >
+
+    <button type="submit" class="add-btn">
+        Search
+    </button>
+
+</form>
+
+<br>
+
+<div class="custom-table">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Joined Date</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>
+                    {{ user.date_joined|date:"Y-m-d" }}
+                </td>
+
+                <td>
+                    {{ user.username }}
+                </td>
+
+                <td>
+                    {{ user.email }}
+                </td>
+
+                <td>
+
+                    {% if user.profile.role == 'admin' %}
+
+                        <span class="role-badge admin">
+                            Admin
+                        </span>
+
+                    {% elif user.profile.role == 'host' %}
+
+                        <span class="role-badge host">
+                            Host
+                        </span>
+
+                    {% else %}
+
+                        <span class="role-badge user">
+                            User
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <a href="{% url 'edit_user' user.id %}" class="btn btn-sm">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+
+                    <span style="margin-left:10px">
+
+                        <a href="{% url 'delete_user' user.id %}" class="btn btn-sm">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

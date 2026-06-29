@@ -1,0 +1,65 @@
+{% load static %}
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+    <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img" style="width: 100px;" >
+</div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="{% url 'index' %}">
+                <i class="mdi mdi-view-dashboard"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'allusers' %}">
+                <i class="mdi mdi-account-group"></i>
+                All Users
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'allusergroups' %}">
+                <i class="mdi mdi-account-multiple"></i>
+                User Groups
+            </a>
+        </li> 
+
+        <li>
+            <a href="{% url 'venues' %}">
+                <i class="mdi mdi-office-building"></i>
+                Venue
+            </a>
+        </li>
+
+         <li>
+            <a href="{% url 'venue_map' %}">
+                <i class="mdi mdi-account-tie"></i>
+                Venue Map
+            </a>
+        </li>  
+
+        <li>
+            <a href="{% url 'bookings' %}">
+                <i class="mdi mdi-calendar-check"></i>
+                Booking
+            </a>
+        </li>
+
+          <li>
+            <a href="{% url 'payment' %}">
+                <i class="mdi mdi-credit-card"></i>
+                Payment
+            </a>
+        </li>
+
+
+
+
+    </ul>
+
+</aside>

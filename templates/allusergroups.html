@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- HEADER -->
+
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+
+        <h1 class="fw-bold">
+            All User Groups
+        </h1>
+
+        <!-- ADD BUTTON -->
+
+        <a href="{% url 'add_allusergroups' %}"
+           class="btn btn-dark" style="margin-left: 630px;">
+
+            <i class="fa-solid fa-plus me-1" ></i>
+
+            Add Group
+
+        </a>
+
+        <!-- FILTER -->
+
+        <div class="dropdown">
+
+            <button class="btn filter-btn dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown">
+
+                <i class="fa-solid fa-filter"></i>
+
+                Filter
+
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="{% url 'allusergroups' %}">
+
+                        All Groups
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="?group=Admin">
+
+                        Admin
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="?group=Customer">
+
+                        Customer
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="?group=Host">
+
+                        Host
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="?group=Staff">
+
+                        Staff
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="group-card shadow-sm rounded-4 bg-white p-3">
+
+        <table class="table align-middle mb-0">
+<thead class="table-dark">
+
+    <tr style="border-radius: 15px;">
+
+        <th class="text-white">ID</th>
+
+        <th class="text-white">Group Name</th>
+
+        <th class="text-white">Status</th>
+
+        <th class="text-white">Permission</th>
+
+        <th class="text-white">Actions</th>
+
+    </tr>
+
+</thead>
+
+            <tbody>
+
+                {% for group in groups %}
+
+                <tr>
+
+                    <!-- ID -->
+
+                    <td>
+
+                        {{ group.id }}
+
+                    </td>
+
+                    <!-- GROUP NAME -->
+
+                    <td>
+
+                        <div class="d-flex align-items-center gap-2">
+
+                            <div class="group-icon">
+
+                                <i class="fa-solid fa-users"></i>
+
+                            </div>
+
+                            <span class="fw-semibold">
+
+                                {{ group.name }}
+
+                            </span>
+
+                        </div>
+
+                    </td>
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        <span class="badge bg-success">
+
+                            {{ group.status }}
+
+                        </span>
+
+                    </td>
+
+                    <!-- PERMISSION -->
+
+                    <td>
+
+                        <button class="btn btn-sm btn-warning"
+                                data-bs-toggle="modal"
+                                data-bs-target="#permissionModal{{ group.id }}">
+
+                            <i class="fa-solid fa-lock me-1"></i>
+
+                            Permission
+
+                        </button>
+
+                    </td>
+
+                    <!-- ACTIONS -->
+
+                    <td>
+
+                        <div class="d-flex gap-2">
+
+                            <!-- EDIT -->
+
+                            <a href="{% url 'edit_allusergroups' group.id %}"
+                               class="btn btn-sm ">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </a>
+
+                            <!-- DELETE -->
+
+                            <a href="{% url 'delete_group' group.id %}"
+                               class="btn btn-sm ">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                <!-- PERMISSION MODAL -->
+
+                <div class="modal fade"
+                     id="permissionModal{{ group.id }}"
+                     tabindex="-1">
+
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content border-0 rounded-4">
+
+                            <!-- HEADER -->
+
+                            <div class="modal-header bg-dark text-white">
+
+                                <h5 class="modal-title">
+
+                                    Permissions - {{ group.name }}
+
+                                </h5>
+
+                                <button type="button"
+                                        class="btn-close btn-close-white"
+                                        data-bs-dismiss="modal"></button>
+
+                            </div>
+
+                            <!-- BODY -->
+
+                           <form method="POST"
+      action="{% url 'save_permission' group.id %}">
+    {% csrf_token %}
+
+    <input type="hidden"
+           name="group_name"
+           value="{{ group.name }}">
+
+    <div class="modal-body p-4">
+
+        <div class="form-check mb-3">
+            <input class="form-check-input"
+       type="checkbox"
+       name="add_users">
+
+<label class="form-check-label">
+                Add Users
+            </label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input"
+       type="checkbox"
+       name="add_users">
+
+<label class="form-check-label">
+                Edit Users
+            </label>
+        </div>
+
+        <div class="form-check mb-3">
+           <input class="form-check-input"
+       type="checkbox"
+       name="add_users">
+
+<label class="form-check-label">
+                Delete Users
+            </label>
+        </div>
+
+        <div class="form-check mb-3">
+           <input class="form-check-input"
+       type="checkbox"
+       name="add_users">
+
+<label class="form-check-label">
+                Manage Bookings
+            </label>
+        </div>
+
+        <div class="form-check mb-3">
+           <input class="form-check-input"
+       type="checkbox"
+       name="add_users">
+
+<label class="form-check-label">
+                Manage Venues
+            </label>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">
+            Close
+        </button>
+
+        <button type="submit"
+                class="btn btn-dark">
+            Save Permissions
+        </button>
+    </div>
+
+</form>
+                           
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="5"
+                        class="text-center py-4">
+
+                        No Groups Found
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}  

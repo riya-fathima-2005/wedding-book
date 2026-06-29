@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header"></div>
+
+<!-- CARDS -->
+<div class="cards-container">
+
+    <!-- USERS -->
+    <div class="dashboard-card">
+        <div>
+            <h3>Users</h3>
+            <h1>{{ users_count }}</h1>
+        </div>
+        <i class="mdi mdi-account-group"></i>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="dashboard-card">
+        <div>
+            <h3>Bookings</h3>
+            <h1>{{ bookings_count }}</h1>
+        </div>
+        <i class="mdi mdi-calendar-check"></i>
+    </div>
+
+    <!-- REVENUE -->
+    <div class="dashboard-card">
+        <div>
+            <h3>Revenue</h3>
+            <h1>₹{{ total_revenue }}</h1>
+        </div>
+        <i class="mdi mdi-currency-usd"></i>
+    </div>
+
+</div>
+
+<!-- RECENT BOOKINGS -->
+<div class="table-section">
+
+    <h2>Recent Bookings</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="background-color:black;color:white;border-top-left-radius:15px;">
+                    Name
+                </th>
+
+                <th style="background-color:black;color:white;">
+                    Venue
+                </th>
+
+                <th style="background-color:black;color:white;border-top-right-radius:15px;">
+                    Status
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for booking in recent_bookings %}
+            <tr>
+
+                <td>
+                    {{ booking.customer_name }}
+                </td>
+
+                <td>
+                    {{ booking.venue.name }}
+                </td>
+
+                <td>
+
+                    {% if booking.status == "Confirmed" %}
+                        <span class="badge bg-success">
+                            {{ booking.status }}
+                        </span>
+
+                    {% elif booking.status == "Pending" %}
+                        <span class="badge bg-warning text-dark">
+                            {{ booking.status }}
+                        </span>
+
+                    {% else %}
+                        <span class="badge bg-secondary">
+                            {{ booking.status }}
+                        </span>
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center py-3">
+                    No Recent Bookings
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+
+<!-- SEARCH RESULTS -->
+{% if query %}
+
+<div class="table-section">
+
+    <h2>Search Results</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th style="background-color:black;color:white;">
+                    Venue Name
+                </th>
+
+                <th style="background-color:black;color:white;">
+                    Location
+                </th>
+
+                <th style="background-color:black;color:white;">
+                    Price
+                </th>
+
+                <th style="background-color:black;color:white;">
+                    Status
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for venue in venues %}
+            <tr>
+
+                <td>
+                    {{ venue.name }}
+                </td>
+
+                <td>
+                    {{ venue.location }}
+                </td>
+
+                <td>
+                    ₹{{ venue.price }}
+                </td>
+
+                <td>
+
+                    {% if venue.status == "Available" %}
+                        <span class="badge bg-success">
+                            {{ venue.status }}
+                        </span>
+
+                    {% else %}
+                        <span class="badge bg-danger">
+                            {{ venue.status }}
+                        </span>
+                    {% endif %}
+
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

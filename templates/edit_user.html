@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-header">
+    <h1>Edit User</h1>
+</div>
+
+<div class="card p-4">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+
+            <label>Username</label>
+
+            <input type="text"
+                   name="username"
+                   value="{{ user.username }}"
+                   class="form-control">
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Email</label>
+
+            <input type="email"
+                   name="email"
+                   value="{{ user.email }}"
+                   class="form-control">
+
+        </div>
+
+        <div class="mb-3">
+
+    <label>Role</label>
+
+    <select
+        name="role"
+        class="form-control"
+    >
+
+        <option
+            value="admin"
+            {% if user.profile.role == 'admin' %}selected{% endif %}
+        >
+            Admin
+        </option>
+
+        <option
+            value="host"
+            {% if user.profile.role == 'host' %}selected{% endif %}
+        >
+            Host
+        </option>
+
+        <option
+            value="user"
+            {% if user.profile.role == 'user' %}selected{% endif %}
+        >
+            User
+        </option>
+
+    </select>
+
+</div>
+
+
+        <button type="submit"
+                class="btn btn-dark">
+
+            Update User
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

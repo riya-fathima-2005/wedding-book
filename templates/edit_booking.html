@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow-sm border-0 p-5 rounded-4">
+
+        <!-- HEADING -->
+
+        <div class="mb-5">
+
+            <h1 class="fw-bold display-4">
+                Edit Booking
+            </h1>
+
+           
+
+        </div>
+
+        <!-- FORM -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- CUSTOMER NAME -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold fs-5">
+                    Customer Name
+                </label>
+
+                <input
+                    type="text"
+                    name="customer_name"
+                    class="form-control form-control-lg rounded-4 py-3"
+                    value="{{ booking.customer_name }}"
+                >
+
+            </div>
+
+            <!-- EMAIL -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold fs-5">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="customer_email"
+                    class="form-control form-control-lg rounded-4 py-3"
+                    value="{{ booking.customer_email }}"
+                >
+
+            </div>
+
+            <!-- PHONE -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold fs-5">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    name="customer_phone"
+                    class="form-control form-control-lg rounded-4 py-3"
+                    value="{{ booking.customer_phone }}"
+                >
+
+            </div>
+
+            <!-- BOOKING DATE -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold fs-5">
+                    Booking Date
+                </label>
+
+                <input
+                    type="date"
+                    name="booking_date"
+                    class="form-control form-control-lg rounded-4 py-3"
+                    value="{{ booking.booking_date|date:'Y-m-d' }}"
+                >
+
+            </div>
+
+            <!-- GUESTS -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold fs-5">
+                    Number Of Guests
+                </label>
+
+                <input
+                    type="number"
+                    name="guests"
+                    class="form-control form-control-lg rounded-4 py-3"
+                    value="{{ booking.guests }}"
+                >
+
+            </div>
+
+            <!-- STATUS -->
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold fs-5">
+                    Status
+                </label>
+
+                <select
+                    name="status"
+                    class="form-select form-select-lg rounded-4 py-3"
+                >
+
+                    <option
+                        value="Pending"
+                        {% if booking.status == "Pending" %}selected{% endif %}
+                    >
+                        Pending
+                    </option>
+
+                    <option
+                        value="Confirmed"
+                        {% if booking.status == "Confirmed" %}selected{% endif %}
+                    >
+                        Confirmed
+                    </option>
+
+                    <option
+                        value="Cancelled"
+                        {% if booking.status == "Cancelled" %}selected{% endif %}
+                    >
+                        Cancelled
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="d-flex gap-3 mt-5">
+
+                <button
+                    type="submit"
+                    class="btn btn-dark btn-lg px-5 rounded-4 btnstyle"
+                >
+                    Update Booking
+                </button>
+
+                <a
+                    href="{% url 'bookings' %}"
+                    class="btn btn-outline-secondary btn-lg px-5 rounded-4 btnstyle "
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="container py-5">
+  <div class="card shadow border-0 p-4 add-user-card">
+    <!-- HEADER -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold mb-0">Add User</h2>
+    </div>
+    {% if messages %} {% for message in messages %}
+
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+      {{ message }}
+
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    {% endfor %} {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- USERNAME -->
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Username </label>
+
+        <input
+          type="text"
+          name="username"
+          class="form-control custom-input"
+          placeholder="Enter username"
+          required
+        />
+      </div>
+
+      <!-- EMAIL -->
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Email </label>
+
+        <input
+          type="email"
+          name="email"
+          class="form-control custom-input"
+          placeholder="Enter email"
+          required
+        />
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="mb-4">
+        <label class="form-label fw-semibold"> Password </label>
+
+        <input
+          type="password"
+          name="password"
+          class="form-control custom-input"
+          placeholder="Enter password"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-semibold"> Profile Image </label>
+
+        <input type="file" name="image" class="form-control custom-input" />
+      </div>
+
+      <!-- BUTTON -->
+
+      <button type="submit" class="add-btn  ">
+        Create User
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

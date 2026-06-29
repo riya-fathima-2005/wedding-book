@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow border-0 p-5 rounded-4">
+
+        <h1 class="fw-bold mb-4">
+            Booking Details
+        </h1>
+
+        <hr>
+
+        <div class="mb-3">
+            <strong>Customer Name:</strong>
+            {{ booking.customer_name }}
+        </div>
+
+        <div class="mb-3">
+            <strong>Email:</strong>
+            {{ booking.customer_email }}
+        </div>
+
+        <div class="mb-3">
+            <strong>Phone:</strong>
+            {{ booking.customer_phone }}
+        </div>
+
+        <div class="mb-3">
+            <strong>Booking Date:</strong>
+            {{ booking.booking_date }}
+        </div>
+
+        <div class="mb-3">
+            <strong>Guests:</strong>
+            {{ booking.guests }}
+        </div>
+        
+
+        <div class="mb-3" style=" margin-bottom: 20px;">
+            <strong>Status:</strong>
+            {{ booking.status }}
+        </div>
+
+        <a
+            href="{% url 'bookings' %}"
+            class="btn btn-dark mt-4 btnstyle">
+            Back
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

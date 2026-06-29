@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}Bookings{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <h1>
+        All Bookings
+    </h1>
+
+</div>
+
+<div class="custom-table">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Customer</th>
+
+                <th>Venue</th>
+
+                <th>Date</th>
+
+                <th>Guests</th>
+
+                <th>Amount</th>
+
+                <th>Status</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for booking in bookings %}
+
+            <tr>
+
+                <td>
+                    {{ booking.id }}
+                </td>
+
+                <td>
+                    {{ booking.customer_name }}
+                </td>
+
+                <td>
+                    {{ booking.venue.name }}
+                </td>
+
+                <td>
+                    {{ booking.booking_date }}
+                </td>
+
+                <td>
+                    {{ booking.guests }}
+                </td>
+
+                <td>
+                    ₹ {{ booking.total_amount }}
+                </td>
+
+                <td>
+
+                    {% if booking.status == "Confirmed" %}
+
+                        <span class="status-confirmed">
+                            {{ booking.status }}
+                        </span>
+
+                    {% elif booking.status == "Cancelled" %}
+
+                        <span class="status-cancelled">
+                            {{ booking.status }}
+                        </span>
+
+                    {% else %}
+
+                        <span class="status-pending">
+                            {{ booking.status }}
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <!-- ACTION BUTTONS -->
+
+                <td class="action-buttons">
+
+                    <!-- VIEW -->
+
+                    <a
+                        href="{% url 'view_booking' booking.id %}"
+                         class="btn "
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+
+                    <!-- EDIT -->
+
+                    <a
+                        href="{% url 'edit_booking' booking.id %}"
+                         class="btn "
+                    >
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+
+                    <!-- DELETE -->
+
+                    <a
+                        href="{% url 'delete_booking' booking.id %}"
+                        class="btn "
+                    >
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="8">
+                    No Bookings Found
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

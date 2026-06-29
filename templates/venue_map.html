@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Venue Map{% endblock %}
+
+{% block content %}
+
+<div class="venue-map-box">
+
+    <h2>Venue Map</h2>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="success-message">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text"
+       name="venue_name"
+       placeholder="Venue Name">
+
+<input type="text"
+       name="latitude"
+       placeholder="Latitude">
+
+<input type="text"
+       name="longitude"
+       placeholder="Longitude">
+
+<button type="submit">
+    Save
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

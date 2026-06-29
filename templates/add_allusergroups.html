@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <!-- CARD -->
+
+            <div class="card shadow border-0 rounded-4">
+
+                <!-- HEADER -->
+
+                <div class="card-header bg-black text-white py-3 rounded-top-4">
+
+                    <h3 class="mb-0 fw-bold">
+
+                        <i class="fa-solid fa-users me-2"></i>
+
+                        Add User Group
+
+                    </h3>
+
+                </div>
+
+                <!-- BODY -->
+
+                <div class="card-body p-4">
+
+                    <form method="POST" action="{% url 'create_groups' %}">
+
+                        {% csrf_token %}
+
+                        <!-- GROUP NAME -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Group Name
+
+                            </label>
+
+                            <input type="text"
+                                   name="group_name"
+                                   class="form-control form-control-lg"
+                                   placeholder="Enter group name">
+
+                        </div>
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Description
+
+                            </label>
+
+                            <textarea name="description"
+                                      rows="4"
+                                      class="form-control"
+                                      placeholder="Enter group description"></textarea>
+
+                        </div>
+
+                        <!-- STATUS -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Status
+
+                            </label>
+
+                            <select name="status"
+                                    class="form-select">
+
+                                <option value="Active">
+
+                                    Active
+
+                                </option>
+
+                                <option value="Inactive">
+
+                                    Inactive
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- PERMISSIONS -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold mb-3">
+
+                                Permissions
+
+                            </label>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               name="permissions"
+                                               value="add_users">
+
+                                        <label class="form-check-label">
+
+                                            Add Users
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               name="permissions"
+                                               value="edit_users">
+
+                                        <label class="form-check-label">
+
+                                            Edit Users
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               name="permissions"
+                                               value="delete_users">
+
+                                        <label class="form-check-label">
+
+                                            Delete Users
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               name="permissions"
+                                               value="view_users">
+
+                                        <label class="form-check-label">
+
+                                            View Users
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- BUTTONS -->
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a href="{% url 'allusergroups' %}"
+                               class="btn btn-outline-dark">
+
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-dark">
+ 
+                                <i class="fa-solid fa-plus me-1"></i>
+
+                                Add Group
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

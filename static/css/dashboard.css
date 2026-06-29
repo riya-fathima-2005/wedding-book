@@ -1,0 +1,655 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f7fc;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 20px;   /* add space on right */
+    height: 70px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+    border-radius: 12px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.search-box {
+    width: 300px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #111827;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    padding-top: 20px;
+}
+
+.sidebar-logo {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.sidebar-logo h2 {
+    font-size: 28px;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin: 10px 0;
+}
+
+.sidebar-menu li a {
+    color: #d1d5db;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 25px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.sidebar-menu li a:hover {
+    background: #1f2937;
+    color: white;
+    border-left: 4px solid #3b82f6;
+}
+
+.sidebar-menu li a i {
+    font-size: 22px;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 100px 30px 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #111827;
+}
+
+/* ================= CARDS ================= */
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.dashboard-card h3 {
+    color: #6b7280;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.dashboard-card h1 {
+    font-size: 36px;
+    color: #111827;
+}
+
+.dashboard-card i {
+    font-size: 50px;
+    color: #3b82f6;
+}
+
+/* ================= TABLE ================= */
+
+.table-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.table-section h2 {
+    margin-bottom: 20px;
+    color: #111827;
+    font-size: 22px;
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-section table th,
+.table-section table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.table-section table th {
+    background: #f9fafb;
+    font-weight: 600;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    background: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    margin-top: 120px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 768px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .navbar {
+        left: 220px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    .footer {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    .search-box {
+        width: 180px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ================= VENUE TABLE ================= */
+
+.venue-table-container{
+    width:100%;
+    background:#ffffff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    overflow-x:auto;
+}
+
+.venue-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1000px;
+}
+
+.venue-table thead{
+    background:#111111;
+}
+
+.venue-table thead th{
+    color:#ffffff;
+    padding:18px 15px;
+    text-align:left;
+    font-size:15px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.venue-table tbody tr{
+    border-bottom:1px solid #eeeeee;
+    transition:0.3s;
+}
+
+.venue-table tbody tr:hover{
+    background:#f8f5f6;
+}
+
+.venue-table tbody td{
+    padding:18px 15px;
+    color:#333333;
+    vertical-align:middle;
+    font-size:15px;
+}
+
+.venue-img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+.action-buttons{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.edit-icon,
+.delete-icon{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#ffffff;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.edit-icon{
+    background:#080708;
+}   
+
+.edit-icon:hover{
+    background:#060606;
+}
+
+.delete-icon{
+    background:#111111;
+}
+
+.delete-icon:hover{
+    background:#333333;
+}
+/* ================= CUSTOM TABLE ================= */
+
+.custom-table{
+    width:100%;
+    background:#ffffff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.custom-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.custom-table thead{
+    background:#111111;
+}
+
+.custom-table thead th{
+    color:#ffffff;
+    padding:18px;
+    text-align:left;
+    font-size:15px;
+    font-weight:600;
+}
+
+.custom-table tbody tr:nth-child(even){
+    background:#f3f4f6;
+}
+
+.custom-table tbody td{
+    padding:18px;
+    color:#333333;
+    font-size:15px;
+    vertical-align:middle;
+}
+
+.custom-table tbody tr:hover{
+    background:#ffe4ec;
+    transition:0.3s;
+}
+
+.venue-table-container{
+    width:100%;
+    background:#ffffff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* ===================================
+   PAGE BACKGROUND
+=================================== */
+
+.edit-venue-page {
+
+    background: #f4f4f4;
+
+    min-height: 100vh;
+
+    padding: 40px 0;
+}
+
+/* ===================================
+   CARD
+=================================== */
+
+.edit-card {
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 45px;
+
+    border: 1px solid #e5e5e5;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.08);
+}
+
+/* ===================================
+   HEADER
+=================================== */
+
+.edit-header {
+
+    margin-bottom: 35px;
+}
+
+/* TITLE */
+
+.edit-title {
+
+    color: #111111;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    font-family: "Poppins", sans-serif;
+
+    margin-bottom: 10px;
+}
+
+/* SUBTITLE */
+
+.edit-subtitle {
+
+    color: #666666;
+
+    font-size: 15px;
+
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===================================
+   FORM GROUP
+=================================== */
+
+.form-group-custom {
+
+    margin-bottom: 24px;
+}
+
+/* LABEL */
+
+.custom-label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===================================
+   INPUT
+=================================== */
+
+.custom-input {
+
+    width: 100%;
+
+    height: 55px;
+
+    border-radius: 14px;
+
+    border: 1px solid #d9d9d9;
+
+    background: #ffffff;
+
+    padding: 12px 18px;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    font-family: "Poppins", sans-serif;
+
+    transition: 0.3s ease;
+
+    outline: none;
+}
+
+/* TEXTAREA */
+
+.custom-textarea {
+
+    height: auto;
+
+    min-height: 140px;
+
+    resize: none;
+
+    padding-top: 16px;
+}
+
+/* FOCUS */
+
+.custom-input:focus {
+
+    border-color: #000000;
+
+    box-shadow:
+        0 0 0 4px rgba(0,0,0,0.08);
+}
+
+/* FILE INPUT */
+
+.file-input {
+
+    padding-top: 14px;
+}
+
+/* ===================================
+   BUTTONS
+=================================== */
+
+.button-group {
+
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 35px;
+}
+
+/* UPDATE BUTTON */
+
+.update-btn {
+
+    background: #111111;
+
+    color: white;
+
+    border: none;
+
+    height: 54px;
+
+    padding: 0 30px;
+
+    border-radius: 14px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    font-family: "Poppins", sans-serif;
+
+    transition: 0.3s ease;
+}
+
+/* HOVER */
+
+.update-btn:hover {
+
+    background: #000000;
+
+    transform: translateY(-2px);
+}
+
+/* CANCEL BUTTON */
+
+.cancel-btn {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 54px;
+
+    padding: 0 30px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #cccccc;
+
+    color: #111111;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    font-family: "Poppins", sans-serif;
+
+    transition: 0.3s ease;
+}
+
+/* HOVER */
+
+.cancel-btn:hover {
+
+    background: #f2f2f2;
+
+    color: #000000;
+}
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media (max-width: 768px) {
+
+    .edit-card {
+
+        padding: 28px;
+    }
+
+    .edit-title {
+
+        font-size: 30px;
+    }
+
+    .button-group {
+
+        flex-direction: column;
+    }
+
+    .update-btn,
+    .cancel-btn {
+
+        width: 100%;
+    }
+
+    
+
+}

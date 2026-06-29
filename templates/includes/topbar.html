@@ -1,0 +1,81 @@
+
+{% load static %}
+<nav class="navbar">
+
+    <div class="navbar-left">
+
+        <button class="menu-btn">
+            <i class="mdi mdi-menu"></i>
+        </button>
+
+        <form method="GET"
+              action="{% url 'index' %}"
+              class="search-form">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search venue..."
+                class="search-box"
+                value="{{ request.GET.q }}"
+            >
+
+            <button type="submit"
+                    class="search-btn">
+
+                <i class="mdi mdi-magnify"></i>
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="navbar-right">
+
+        <div class="dropdown">
+
+            <a href="#"
+               class="profile-link"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">
+
+                <i class="mdi mdi-account-circle profile-icon"></i>
+
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end profile-dropdown">
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="{% url 'profile' %}">
+
+                        <i class="mdi mdi-account me-2 txt-black"></i>
+
+                        My Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="{% url 'logout' %}">
+
+                        <i class="mdi mdi-logout me-2"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
