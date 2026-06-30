@@ -118,14 +118,7 @@ function App() {
 
 {/* 
         {/* PROTECTED VENUE */}
-        <Route
-          path="/venue"
-          element={
-            <ProtectedRoute>
-              <Venue />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/venue" element={<VenueNearby />} />
 
           {/* MY BOOKINGS */}
 
@@ -186,7 +179,14 @@ function App() {
         />  */}
 
         {/* RESERVE */}
-        <Route path="/reserve" element={<Reserve />} />
+       <Route
+  path="/reserve"
+  element={
+    <ProtectedRoute>
+      <Reserve />
+    </ProtectedRoute>
+  }
+/>
 
         {/* VENUE GALLERY */}
        <Route path="/venuegallary" element={<Venuegallary />} />

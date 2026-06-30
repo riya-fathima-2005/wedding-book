@@ -13,36 +13,27 @@ function VenueNearby() {
   const [mapVenues, setMapVenues] = useState([]);
 const [userLocation, setUserLocation] = useState(null);
 
-  useEffect(() => {
-    const fetchVenues = async () => {
-      try {
-        const token = localStorage.getItem("token");
+   useEffect(() => {
+  const fetchVenues = async () => {
+    try {
+      const response = await fetch(
+        `${API_URL}/api/venues/`
+      );
 
-        if (!token) {
-          navigate("/login");
-          return;
-        }
+      const data = await response.json();
 
-        const response = await fetch(
-          `${API_URL}/api/venues/`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+      setVenues(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        const data = await response.json();
-        setVenues(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  fetchVenues();
+}, []);
 
-    fetchVenues();
-  }, [navigate]);
+
   const showNearestVenues = async () => {
   navigator.geolocation.getCurrentPosition(
     async (position) => {

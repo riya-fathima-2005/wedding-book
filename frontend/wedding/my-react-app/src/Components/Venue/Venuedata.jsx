@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2"
 import "../../assets/Style/Venuedata.css";
 import wed7 from "../../assets/Images/ban4.png";
 
@@ -20,7 +19,7 @@ function Venuedata({ showBanner = true }) {
         );
 
        const data = await response.json();
-console.log("Venue API data:", data);
+
 
 setVenues(Array.isArray(data) ? data : []);
       } catch (error) {
@@ -36,31 +35,9 @@ setVenues(Array.isArray(data) ? data : []);
     fetchVenues();
   }, []);
 
-  // LOGIN CHECK WHEN CLICKING VIEW VENUE
-  const handleViewVenue = (id) => {
-    const token = localStorage.getItem("token");
-
-    // IF NOT LOGGED IN
-    if (!token) {
-      Swal.fire({
-        title: "Please Login",
-        text: "You need to login to continue",
-        showCancelButton: true,
-        confirmButtonText: "Login",
-        cancelButtonText: "Cancel",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/login");
-        }
-      });
-
-      return;
-    }
-
-    // IF LOGGED IN
-    navigate(`/morevenue/${id}`);
-  };
-
+const handleViewVenue = (id) => {
+  navigate(`/morevenue/${id}`);
+};
   return (
     <section className="venues-section">
       {showBanner && (

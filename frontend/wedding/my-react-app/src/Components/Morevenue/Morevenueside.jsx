@@ -2,17 +2,17 @@ import React, {
   useEffect,
   useState
 } from "react";
-
+import Swal from "sweetalert2";
 import {
   useParams,
-  Link
+  useNavigate
 } from "react-router-dom";
 
 import "../../assets/Style/Morevenue1.css";
 
 const Morevenueside = () => {
-
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [venue, setVenue] =
     useState(null);
@@ -26,24 +26,10 @@ const Morevenueside = () => {
 
         try {
 
-          const token =
-            localStorage.getItem(
-              "token"
-            );
-
           const response =
-            await fetch(
-
-              `${API_URL}/api/venues/`,
-
-              {
-                headers: {
-                  Authorization:
-                    `Bearer ${token}`
-                }
-              }
-
-            );
+  await fetch(
+    `${API_URL}/api/venues/`
+  );
 
           const data =
             await response.json();
@@ -72,6 +58,16 @@ const Morevenueside = () => {
     fetchVenue();
 
   }, [id]);
+const handleReserve = () => {
+  navigate("/reserve", {
+    state: {
+      venueId: venue.id,
+      venueName: venue.name,
+      venuePrice: venue.price,
+    },
+  });
+};
+
 
   if (!venue) {
 
@@ -184,18 +180,12 @@ const Morevenueside = () => {
 
   </div>
 
-  <Link
-    to="/reserve"
-    state={{
-      venueId: venue.id,
-      venueName: venue.name,
-      venuePrice: venue.price
-    }}
-  >
-    <button className="reserve-btn">
-      Reserve Venue
-    </button>
-  </Link>
+<button
+  className="reserve-btn"
+  onClick={handleReserve}
+>
+  Reserve Venue
+</button>
 
 </div>
 

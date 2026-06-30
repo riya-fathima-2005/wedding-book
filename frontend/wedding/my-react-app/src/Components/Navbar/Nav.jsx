@@ -156,11 +156,11 @@ const Nav = () => {
                 style={{
                   color: "#fff",
                   textDecoration: "none",
-                  paddingTop: "15px",
+               
                   marginBottom: "-10px",
                 }}
               >
-                <b>Login</b>
+                <b>LOGIN</b>
               </NavLink>
 
               <NavLink
@@ -168,11 +168,11 @@ const Nav = () => {
                 style={{
                   color: "#fff",
                   textDecoration: "none",
-                  paddingTop: "15px",
+               
                   marginBottom: "-10px",
                 }}
               >
-                <b>Sign Up</b>
+                <b>SIGN UP</b>
               </NavLink>
             </div>
           ) : (
