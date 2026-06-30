@@ -22,6 +22,7 @@ import Contacted from "./Components/Contacting/Contacted";
 import Howtohost from "./Components/Howhost/Howtohost";
 import Hostdetails from "./Components/Howhost/Hostdetails";
 import VenueNearby from "./Components/Venue/VenueNearby";
+import NotFound from "./Components/NotFound";
 
 // AUTH
 import Login from "./Components/Login/Login";
@@ -30,7 +31,6 @@ import Sign from "./Components/Sign/Sign";
 // VENUE
 import Venue from "./Components/Venue/Venue";
 import Venuegallary from "./Components/Venue/Venuegallary";
-
 
 import Morevenueside from "./Components/Morevenue/Morevenueside";
 
@@ -53,13 +53,43 @@ import MyBookings from "./Components/Morevenue/MyBookings";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Smallprofile from "./Components/Navbar/Smallprofile";
 
-
 function App() {
   const location = useLocation();
 
+  const validRoutes = [
+    "/",
+    "/wedding",
+    "/faqqq",
+    "/about",
+    "/gallery",
+    "/venue",
+    "/host",
+    "/blog",
+    "/blogs",
+    "/blogss",
+    "/christ",
+    "/contact",
+    "/hostdetails",
+    "/howhost",
+    "/payment",
+    "/payment-success",
+    "/wedding-details",
+    "/login",
+    "/sign",
+    "/my-bookings",
+    "/reserve",
+    "/venuegallary",
+    "/Smallprofile",
+  ];
+
+  const isNotFound =
+    !validRoutes.includes(location.pathname) &&
+    !location.pathname.startsWith("/morevenue/");
+
   const hideLayout =
     location.pathname === "/login" ||
-    location.pathname === "/sign";
+    location.pathname === "/sign" ||
+    isNotFound;
 
   return (
     <>
@@ -67,130 +97,50 @@ function App() {
       {!hideLayout && <Nav />}
 
       <Routes>
-        {/* HOME */}
         <Route path="/" element={<Home />} />
-
-        {/* PAGES */}
         <Route path="/wedding" element={<Wedding />} />
-
         <Route path="/faqqq" element={<Faqcontent />} />
-
         <Route path="/about" element={<Aboutpage />} />
-
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/venue" element={<VenueNearby />} />
-
-        {/* <Route
-          path="/costumes"
-          element={<Costume />}
-        /> */}
-
         <Route path="/host" element={<Hostsec />} />
-
         <Route path="/blog" element={<Blogpage />} />
-
         <Route path="/blogs" element={<Subblog />} />
-
         <Route path="/blogss" element={<Subblogss />} />
-
         <Route path="/christ" element={<Christians />} />
-
         <Route path="/contact" element={<Contacted />} />
-
         <Route path="/hostdetails" element={<Hostdetails />} />
-
         <Route path="/howhost" element={<Howtohost />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/payment-success" element={<Success />}/>
+        <Route path="/payment-success" element={<Success />} />
         <Route path="/wedding-details" element={<WeddingDetails />} />
 
         {/* AUTH */}
         <Route path="/login" element={<Login />} />
-
         <Route path="/sign" element={<Sign />} />
-        
 
+        {/* MORE VENUE */}
+        <Route path="/morevenue/:id" element={<Morevenueside />} />
 
-<Route
-  path="/morevenue/:id"
-  element={<Morevenueside />}
-/>
-
-{/* 
-        {/* PROTECTED VENUE */}
-        <Route path="/venue" element={<VenueNearby />} />
-
-          {/* MY BOOKINGS */}
-
-<Route path="/my-bookings" element={<MyBookings />} />
-
-        {/* <Route
-          path="/morevenue/1"
-          element={
-            <ProtectedRoute>
-              <Morevenue1 />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/morevenue/2"
-          element={
-            <ProtectedRoute>
-              <Morevenue2 />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/morevenue/3"
-          element={
-            <ProtectedRoute>
-              <Morevenue3 />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/morevenue/4"
-          element={
-            <ProtectedRoute>
-              <Morevenue4 />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/morevenue/5"
-          element={
-            <ProtectedRoute>
-              <Morevenue5 />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/morevenue/6"
-          element={
-            <ProtectedRoute>
-              <Morevenue6 />
-            </ProtectedRoute>
-          }
-        />  */}
+        {/* MY BOOKINGS */}
+        <Route path="/my-bookings" element={<MyBookings />} />
 
         {/* RESERVE */}
-       <Route
-  path="/reserve"
-  element={
-    <ProtectedRoute>
-      <Reserve />
-    </ProtectedRoute>
-  }
-/>
+        <Route
+          path="/reserve"
+          element={
+            <ProtectedRoute>
+              <Reserve />
+            </ProtectedRoute>
+          }
+        />
 
         {/* VENUE GALLERY */}
-       <Route path="/venuegallary" element={<Venuegallary />} />
-        <Route path="/Smallprofile" element={<Smallprofile/>}/>
+        <Route path="/venuegallary" element={<Venuegallary />} />
+        <Route path="/Smallprofile" element={<Smallprofile />} />
+
+        {/* 404 PAGE - ALWAYS LAST */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {/* FOOTER */}
