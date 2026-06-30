@@ -56,18 +56,50 @@ from rest_framework.response import Response
 
 
 # index
+from django.db.models import Sum
+
 def index(request):
-    venues = Venue.objects.all()[:6]
-    weddings = Wedding.objects.all()[:4]
+
+    # total users
+    users_count = User.objects.count()
+
+    # total bookings
+    bookings_count = Booking.objects.count()
+
+    # revenue sum
+    total_revenue = Booking.objects.aggregate(
+        total=Sum("total_amount")
+    )["total"] or 0
+
+    # latest 5 bookings
+    recent_bookings = Booking.objects.order_by(
+        "-id"
+    )[:5]
+
+    # search
+    query = request.GET.get("q")
+    venues = None
+
+    if query:
+        venues = Venue.objects.filter(
+            name__icontains=query
+        )
+
+    context = {
+        "users_count": users_count,
+        "bookings_count": bookings_count,
+        "total_revenue": total_revenue,
+        "recent_bookings": recent_bookings,
+        "query": query,
+        "venues": venues,
+    }
 
     return render(
         request,
         "index.html",
-        {
-            "venues": venues,
-            "weddings": weddings
-        }
+        context
     )
+
 
 @api_view(["POST"])
 def contact_test(request):

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 
 
@@ -407,3 +408,23 @@ class VenueMap(models.Model):
 
     def __str__(self):
         return self.venue_name
+
+class Blog(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to="blogs/")
+    content = RichTextField()
+
+    meta_title = models.CharField(max_length=255, blank=True)
+    meta_description = models.TextField(blank=True)
+    keywords = models.CharField(max_length=255, blank=True)
+
+    is_published = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+
+    

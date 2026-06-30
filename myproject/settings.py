@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'backend.apps.BackendConfig',
     'rest_framework',
     'corsheaders',
-
+    'ckeditor',
     'cloudinary',
     'cloudinary_storage',
 ]
