@@ -71,9 +71,40 @@ def index(request):
 
 @api_view(["POST"])
 def contact_test(request):
-    return Response({
-        "message": "API TEST SUCCESS"
-    })
+
+    fullname = request.data.get("fullname")
+    email = request.data.get("email")
+    phone = request.data.get("phone")
+    message = request.data.get("message")
+
+    try:
+        send_mail(
+            subject=f"New Contact Message from {fullname}",
+
+            message=f"""
+Name: {fullname}
+Email: {email}
+Phone: {phone}
+
+Message:
+{message}
+            """,
+
+            from_email=settings.EMAIL_HOST_USER,
+
+            recipient_list=["yourgmail@gmail.com"],   # where you receive mail
+
+            fail_silently=False,
+        )
+
+        return Response({
+            "message": "Message sent successfully"
+        })
+
+    except Exception as e:
+        return Response({
+            "message": str(e)
+        }, status=500)
     # ================= AUTHENTICATION =================
 
 
