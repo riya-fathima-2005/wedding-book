@@ -687,7 +687,7 @@ def delete_venue(request, id):
 
 @api_view(['GET'])
 
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def venue_api(request):
 
     venues = Venue.objects.all()
