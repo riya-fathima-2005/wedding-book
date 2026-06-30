@@ -113,13 +113,7 @@ function App() {
 
 <Route
   path="/morevenue/:id"
-  element={
-    <ProtectedRoute>
-      <Morevenueside />
-    </ProtectedRoute>
-
- 
-  }
+  element={<Morevenueside />}
 />
 
 {/* 
@@ -192,24 +186,10 @@ function App() {
         />  */}
 
         {/* RESERVE */}
-        <Route
-          path="/reserve"
-          element={
-            <ProtectedRoute>
-              <Reserve />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/reserve" element={<Reserve />} />
 
         {/* VENUE GALLERY */}
-        <Route
-          path="/venuegallary"
-          element={
-            <ProtectedRoute>
-              <Venuegallary />
-            </ProtectedRoute>
-          }
-        />
+       <Route path="/venuegallary" element={<Venuegallary />} />
         <Route path="/Smallprofile" element={<Smallprofile/>}/>
       </Routes>
 

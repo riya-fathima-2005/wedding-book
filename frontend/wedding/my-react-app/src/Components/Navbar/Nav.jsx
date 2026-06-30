@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 
 import logo from "../../assets/Images/logo.png";
 import "../../assets/Style/Nav.css";
 
 const Nav = () => {
-  const navigate = useNavigate();
-
   // NAVBAR SCROLL
   const [scrolled, setScrolled] = useState(false);
 
@@ -20,7 +18,6 @@ const Nav = () => {
   // CHECK LOGIN
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     const savedUser = localStorage.getItem("user");
 
     if (token && savedUser) {
@@ -40,32 +37,36 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // LOGOUT
+  // LOGOUT (STAY ON SAME PAGE)
   const handleLogout = () => {
     localStorage.removeItem("token");
-
     localStorage.removeItem("refresh");
-
     localStorage.removeItem("user");
 
     setUser(null);
-
-    navigate("/login");
   };
 
   return (
     <nav
       className={`navbar navbar-expand-lg fixed-top navbar-custom ${
-        scrolled ? "navbar-scrolled" : "navbar-transparent"
+        scrolled
+          ? "navbar-scrolled"
+          : "navbar-transparent"
       }`}
     >
       <div className="container">
+
         {/* LOGO */}
         <NavLink to="/" className="navbar-brand">
-          <img src={logo} alt="Company Logo" className="company-logo" />
+          <img
+            src={logo}
+            alt="Company Logo"
+            className="company-logo"
+          />
         </NavLink>
 
         {/* MOBILE TOGGLE */}
@@ -79,7 +80,11 @@ const Nav = () => {
         </button>
 
         {/* NAVBAR MENU */}
-        <div className="collapse navbar-collapse" id="navMenu">
+        <div
+          className="collapse navbar-collapse"
+          id="navMenu"
+        >
+
           {/* NAV LINKS */}
           <ul className="navbar-nav mx-auto gap-lg-4 text-center">
             <li className="nav-item">
@@ -89,37 +94,55 @@ const Nav = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink to="/wedding" className="nav-link">
+              <NavLink
+                to="/wedding"
+                className="nav-link"
+              >
                 WEDDING
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/venue" className="nav-link">
+              <NavLink
+                to="/venue"
+                className="nav-link"
+              >
                 VENUE
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/blog" className="nav-link">
+              <NavLink
+                to="/blog"
+                className="nav-link"
+              >
                 BLOG
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/faqqq" className="nav-link">
+              <NavLink
+                to="/faqqq"
+                className="nav-link"
+              >
                 FAQ
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/contact" className="nav-link">
+              <NavLink
+                to="/contact"
+                className="nav-link"
+              >
                 CONTACT
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/host" className="nav-link">
+              <NavLink
+                to="/host"
+                className="nav-link"
+              >
                 BECOME A HOST
               </NavLink>
             </li>
@@ -154,57 +177,66 @@ const Nav = () => {
             </div>
           ) : (
             <div className="position-relative">
+
               {/* PROFILE ICON */}
               <FaUserCircle
                 size={38}
                 color="#fff"
-                style={{
-                  cursor: "pointer",
-                }}
-                onClick={() => setShowProfile(!showProfile)}
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  setShowProfile(!showProfile)
+                }
               />
 
               {/* PROFILE DROPDOWN */}
-           {showProfile && (
-  <div className="profile-dropdown">
+              {showProfile && (
+                <div className="profile-dropdown">
 
-    <div className="text-center">
-      <FaUserCircle size={60} color="#000" />
+                  <div className="text-center">
+                    <FaUserCircle
+                      size={60}
+                      color="#000"
+                    />
 
-      <h6 className="mt-2">
-        {user?.username || user?.name || "User"}
-      </h6>
+                    <h6 className="mt-2">
+                      {user?.username ||
+                        user?.name ||
+                        "User"}
+                    </h6>
 
-      <p>{user?.email}</p>
-    </div>
+                    <p>{user?.email}</p>
+                  </div>
 
-    <hr />
+                  <hr />
 
-    <NavLink
-      to="/smallprofile"
-      className="btn btn-outline-dark w-100 mb-2"
-      onClick={() => setShowProfile(false)}
-    >
-      My Profile
-    </NavLink>
+                  <NavLink
+                    to="/smallprofile"
+                    className="btn btn-outline-dark w-100 mb-2"
+                    onClick={() =>
+                      setShowProfile(false)
+                    }
+                  >
+                    My Profile
+                  </NavLink>
 
-    <NavLink
-      to="/my-bookings"
-      className="btn btn-outline-dark w-100 mb-2"
-      onClick={() => setShowProfile(false)}
-    >
-      My Bookings
-    </NavLink>
+                  <NavLink
+                    to="/my-bookings"
+                    className="btn btn-outline-dark w-100 mb-2"
+                    onClick={() =>
+                      setShowProfile(false)
+                    }
+                  >
+                    My Bookings
+                  </NavLink>
 
-    <button
-      className="btn btn-dark w-100"
-      onClick={handleLogout}
-    >
-      Logout
-    </button>
-
-  </div>
-)}  
+                  <button
+                    className="btn btn-dark w-100"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>

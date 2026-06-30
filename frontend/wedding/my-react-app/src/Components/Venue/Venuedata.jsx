@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"
 import "../../assets/Style/Venuedata.css";
 import wed7 from "../../assets/Images/ban4.png";
 
@@ -11,39 +11,55 @@ function Venuedata({ showBanner = true }) {
   const [venues, setVenues] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // FETCH VENUES (PUBLIC)
   useEffect(() => {
     const fetchVenues = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `${API_URL}/api/venues/`
+        );
 
-        if (!token) {
-          navigate("/login");
-          return;
-        }
+       const data = await response.json();
+console.log("Venue API data:", data);
 
-        const response = await fetch(`${API_URL}/api/venues/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (response.status === 401) {
-          localStorage.clear();
-          navigate("/login");
-          return;
-        }
-
-        const data = await response.json();
-        setVenues(Array.isArray(data) ? data : []);
+setVenues(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error("Venue Fetch Error:", error);
+        console.error(
+          "Venue Fetch Error:",
+          error
+        );
       } finally {
         setLoading(false);
       }
     };
 
     fetchVenues();
-  }, [navigate]);
+  }, []);
+
+  // LOGIN CHECK WHEN CLICKING VIEW VENUE
+  const handleViewVenue = (id) => {
+    const token = localStorage.getItem("token");
+
+    // IF NOT LOGGED IN
+    if (!token) {
+      Swal.fire({
+        title: "Please Login",
+        text: "You need to login to continue",
+        showCancelButton: true,
+        confirmButtonText: "Login",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+
+      return;
+    }
+
+    // IF LOGGED IN
+    navigate(`/morevenue/${id}`);
+  };
 
   return (
     <section className="venues-section">
@@ -54,7 +70,9 @@ function Venuedata({ showBanner = true }) {
             alt="Venue Banner"
             className="decore-img"
           />
-          <h2 className="overlay-text">Venue</h2>
+          <h2 className="overlay-text">
+            Venue
+          </h2>
         </div>
       )}
 
@@ -64,7 +82,9 @@ function Venuedata({ showBanner = true }) {
         </h2>
 
         <p className="venue-description">
-          Discover beautiful wedding venues tailored to your style and celebration.
+          Discover beautiful wedding venues
+          tailored to your style and
+          celebration.
         </p>
 
         {loading ? (
@@ -76,10 +96,7 @@ function Venuedata({ showBanner = true }) {
             No venues found.
           </p>
         ) : (
-
-          /* ONLY CARDS */
           <div className="venue-grid">
-
             {venues.map((venue) => (
               <div
                 className="venue-card"
@@ -89,7 +106,9 @@ function Venuedata({ showBanner = true }) {
                   <img
                     src={
                       venue.image
-                        ? venue.image.startsWith("http")
+                        ? venue.image.startsWith(
+                            "http"
+                          )
                           ? venue.image
                           : `${API_URL}${venue.image}`
                         : wed7
@@ -100,7 +119,6 @@ function Venuedata({ showBanner = true }) {
                 </div>
 
                 <div className="venue-content">
-
                   <h4 className="venue-title">
                     {venue.name}
                   </h4>
@@ -110,7 +128,8 @@ function Venuedata({ showBanner = true }) {
                   </p>
 
                   <div className="couple-name">
-                    💍 {venue.bride_name} & {venue.groom_name}
+                    💍 {venue.bride_name} &{" "}
+                    {venue.groom_name}
                   </div>
 
                   <div className="venue-price">
@@ -119,7 +138,8 @@ function Venuedata({ showBanner = true }) {
 
                   <div
                     className={
-                      venue.status === "Available"
+                      venue.status ===
+                      "Available"
                         ? "status available"
                         : "status booked"
                     }
@@ -127,22 +147,18 @@ function Venuedata({ showBanner = true }) {
                     {venue.status}
                   </div>
 
-                  <Link
-                    to={`/morevenue/${venue.id}`}
-                    className="venue-link"
+                  <button
+                    className="view-btn btn-outline-dark"
+                    onClick={() =>
+                      handleViewVenue(venue.id)
+                    }
                   >
-                    
-                    <button className="view-btn btn-outline-dark">
-                      View Venue
-                    </button>
-                  </Link>
-
+                    View Venue
+                  </button>
                 </div>
               </div>
             ))}
-
           </div>
-
         )}
       </div>
     </section>
@@ -150,5 +166,3 @@ function Venuedata({ showBanner = true }) {
 }
 
 export default Venuedata;
-
-
