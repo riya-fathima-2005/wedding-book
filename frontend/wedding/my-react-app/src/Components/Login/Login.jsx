@@ -23,8 +23,8 @@ const Login = () => {
   setErrorMessage("");
 
   try {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/token/`,
+const response = await fetch(
+  "https://wedding-book.onrender.com/api/token/",
       {
         method: "POST",
         headers: {
