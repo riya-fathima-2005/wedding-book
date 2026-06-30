@@ -17,94 +17,65 @@ const Login = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // HANDLE LOGIN
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    e.preventDefault();
+  setErrorMessage("");
 
-    setErrorMessage("");
-
-    try {
-
-      // API CALL
-      const response = await fetch(
-
-        `${import.meta.env.VITE_API_URL}/api/token/`,
-
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-
-            username,
-
-            password,
-
-          }),
-        }
-      );
-
-      // SAFE RESPONSE
-      const text = await response.text();
-
-      const data = text
-        ? JSON.parse(text)
-        : {};
-
-      // ERROR HANDLE
-      if (!response.ok) {
-
-        throw new Error(
-          data.detail || "Login failed"
-        );
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/token/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
       }
+    );
 
-      // SAVE ACCESS TOKEN
-      localStorage.setItem(
-        "token",
-        data.access
+    const text = await response.text();
+
+    const data = text ? JSON.parse(text) : {};
+
+    if (!response.ok) {
+      throw new Error(
+        data.detail || "Login failed"
       );
-
-      // SAVE REFRESH TOKEN
-      localStorage.setItem(
-        "refresh",
-        data.refresh
-      );
-
-      // SAVE USER DATA
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          username: username,
-        })
-      );
-
-      // SUCCESS
-      setIsSuccess(true);
-
-      // REDIRECT TO HOME PAGE
-      setTimeout(() => {
-
-        navigate("/");
-
-        // PAGE REFRESH FOR NAVBAR UPDATE
-        window.location.reload();
-
-      }, 1000);
-
-    } catch (error) {
-
-      console.error(error);
-
-      setErrorMessage(
-        error.message
-      );
-
     }
-  };
+
+    localStorage.setItem(
+      "token",
+      data.access
+    );
+
+    localStorage.setItem(
+      "refresh",
+      data.refresh
+    );
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        username: username,
+      })
+    );
+
+    setIsSuccess(true);
+
+    setTimeout(() => {
+      navigate("/");
+      window.location.reload();
+    }, 1000);
+
+  } catch (error) {
+    console.error(error);
+    setErrorMessage(error.message);
+  }
+};
 
   // SUCCESS SCREEN
   if (isSuccess) {
