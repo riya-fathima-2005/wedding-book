@@ -53,7 +53,7 @@ const Sign = () => {
       setLoading(true);
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/signup/`,
+  "https://wedding-book.onrender.com/signup/",
         {
           method: "POST",
           headers: {
