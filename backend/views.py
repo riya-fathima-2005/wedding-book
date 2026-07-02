@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from urllib import request
+from urllib3 import request
 
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from rest_framework.permissions import AllowAny
 from .models import VenueMap
 from .serializers import VenueMapSerializer
 from django.db.models import Sum
-
+from .models import Blog, BlogCategory
+from .forms import BlogForm
 
 
 
@@ -1434,7 +1437,7 @@ class WeddingListCreateView(generics.ListCreateAPIView):
         else:
             serializer.save()
     
-    # ================= OTHER PAGES =================
+
 
 
 
@@ -1476,3 +1479,207 @@ class VenueMapAPIView(APIView):
             })
 
         return Response(data)
+    
+# ================= BLOG PAGES =================
+
+def blog(request):
+
+    categories = BlogCategory.objects.all()
+    form = BlogForm()
+
+    if request.method == "POST":
+
+        selected_category = BlogCategory.objects.get(
+            id=request.POST.get("category")
+        )
+
+        Blog.objects.create(
+
+            category=selected_category,
+
+            title=request.POST.get("title"),
+
+            author=request.POST.get("author"),
+
+            image=request.FILES.get("image"),
+
+            content=request.POST.get("content"),
+
+            short_description=request.POST.get(
+                "short_description"
+            ),
+
+            meta_title=request.POST.get(
+                "meta_title"
+            ),
+
+            meta_description=request.POST.get(
+                "meta_description"
+            ),
+
+            meta_keywords=request.POST.get(
+                "meta_keywords"
+            ),
+
+            is_published=(
+                request.POST.get("is_published") == "True"
+            )
+        )
+
+        return redirect("blog")
+
+    return render(
+        request,
+        "blog.html",
+        {
+            "categories": categories,
+            "form": form
+        }
+    )
+
+
+# BLOG LIST PAGE
+
+def blog_list(request):
+
+    blogs = Blog.objects.all().order_by(
+        "-created_at"
+    )
+
+    return render(
+        request,
+        "blog_list.html",
+        {
+            "blogs": blogs
+        }
+    )
+
+
+# DELETE BLOG
+
+def delete_blog(request, id):
+
+    blog = Blog.objects.get(id=id)
+
+    blog.delete()
+
+    return redirect(
+        "blog_list"
+    )
+
+
+# EDIT BLOG
+
+def edit_blog(request, id):
+
+    blog = Blog.objects.get(id=id)
+
+    categories = BlogCategory.objects.all()
+
+    form = BlogForm(
+        instance=blog
+    )
+
+    if request.method == "POST":
+
+        blog.title = request.POST.get(
+            "title"
+        )
+
+        blog.author = request.POST.get(
+            "author"
+        )
+
+        # CKEditor content update
+        blog.content = request.POST.get(
+            "content"
+        )
+
+        blog.short_description = request.POST.get(
+            "short_description"
+        )
+
+        blog.meta_title = request.POST.get(
+            "meta_title"
+        )
+
+        blog.meta_description = request.POST.get(
+            "meta_description"
+        )
+
+        blog.meta_keywords = request.POST.get(
+            "meta_keywords"
+        )
+
+        blog.category = BlogCategory.objects.get(
+            id=request.POST.get("category")
+        )
+
+        if request.FILES.get("image"):
+
+            blog.image = request.FILES.get(
+                "image"
+            )
+
+        blog.save()
+
+        return redirect(
+            "blog_list"
+        )
+
+    return render(
+        request,
+        "edit_blog.html",
+        {
+            "blog": blog,
+            "categories": categories,
+            "form": form
+        }
+    )
+
+
+# BLOG API FOR REACT FRONTEND
+
+def blog_api(request):
+
+    blogs = Blog.objects.filter(
+        is_published=True
+    ).order_by(
+        "-created_at"
+    )
+
+    data = []
+
+    for blog in blogs:
+
+        data.append({
+
+            "id": blog.id,
+
+            "title": blog.title,
+
+            "category":
+            blog.category.name
+            if blog.category
+            else "",
+
+            "image":
+            blog.image.url
+            if blog.image
+            else "",
+
+            "short_description":
+            blog.short_description,
+
+            "slug":
+            blog.slug
+
+        })
+
+    return JsonResponse(
+        data,
+        safe=False
+    )
+
+
+# ================= OTHER PAGES =================

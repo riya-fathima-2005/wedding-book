@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="blog-table-wrapper">
+
+    <div class="blog-table-top">
+
+        <h2>Blog Management</h2>
+
+        <a href="{% url 'blog' %}" class="add-blog-btn">
+            + Add Blog
+        </a>
+
+    </div>
+
+    <table class="blog-table">
+
+        <thead>
+
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for blog in blogs %}
+
+            <tr>
+
+                <td>
+                    <img src="{{ blog.image.url }}">
+                </td>
+
+                <td>{{ blog.title }}</td>
+
+                <td>{{ blog.category.name }}</td>
+
+                <td>{{ blog.author }}</td>
+
+                <td>
+
+                    {% if blog.is_published %}
+                        Published
+                    {% else %}
+                        Draft
+                    {% endif %}
+
+                </td>
+
+               <td class="blog-action-buttons">
+
+    <a href="{% url 'edit_blog' blog.id %}" class="blog-edit-icon">
+        <i class="mdi mdi-pencil"></i>
+    </a>
+
+    <a href="{% url 'delete_blog' blog.id %}" class="blog-delete-icon">
+        <i class="mdi mdi-delete"></i>
+    </a>
+
+</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

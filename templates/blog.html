@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="blog-admin-wrapper">
+
+    <form method="POST" enctype="multipart/form-data" class="blog-admin-form">
+
+        {% csrf_token %}
+
+        <!-- LEFT SIDE -->
+        <div class="blog-main-area">
+
+            <!-- TOP BUTTON -->
+
+            <!-- BASIC INFO -->
+            <div class="blog-admin-card">
+
+                <h2>Basic Information</h2>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+                        <label>Blog Title</label>
+                        <input type="text" name="title" required>
+                    </div>
+
+                    <div class="blog-input-group">
+                        <label>Category</label>
+
+                        <select name="category" required>
+
+                            <option value="">Select Category</option>
+
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">
+                                    {{ category.name }}
+                                </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+                        <label>Author</label>
+                        <input type="text" name="author">
+                    </div>
+
+                    <div class="blog-input-group">
+                        <label>Featured Image</label>
+                        <input type="file" name="image">
+                    </div>
+
+                </div>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+                        <label>Publish Status</label>
+
+                        <select name="is_published">
+                            <option value="True">Published</option>
+                            <option value="False">Draft</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BLOG CONTENT -->
+            <div class="blog-admin-card">
+
+                <h2>Blog Content</h2>
+
+                {{ form.content }}
+                {{ form.media }}
+
+            </div>
+
+            <!-- SEO SETTINGS -->
+            <div class="blog-admin-card">
+
+                <h2>SEO Settings</h2>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+                        <label>Meta Title</label>
+                        <input type="text" name="meta_title">
+                    </div>
+
+                    <div class="blog-input-group">
+                        <label>Meta Keywords</label>
+                        <input type="text" name="meta_keywords">
+                    </div>
+
+                </div>
+
+                <div class="blog-input-group">
+
+                    <label>Meta Description</label>
+
+                    <textarea name="meta_description" rows="4"></textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="blog-side-area">
+
+            <div class="blog-admin-sidecard">
+
+                <h2>Additional Settings</h2>
+
+                <textarea
+                    name="short_description"
+                    rows="6"
+                    placeholder="Short Description">
+                </textarea>
+
+                <button type="submit" class="blog-publish-btn">
+                    Publish Blog
+                </button>
+
+                <a href="{% url 'blog_list' %}" class="blog-publish-btn1">
+                    View All Blogs
+                </a>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

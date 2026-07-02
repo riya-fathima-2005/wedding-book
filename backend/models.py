@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
+from django.utils.text import slugify
+from django_ckeditor_5.fields import CKEditor5Field
+import uuid
 
 
 
@@ -400,7 +402,7 @@ class VenueMap(models.Model):
         null=True,
         blank=True
     )
-
+    
     longitude = models.FloatField(
         null=True,
         blank=True
@@ -408,23 +410,66 @@ class VenueMap(models.Model):
 
     def __str__(self):
         return self.venue_name
+    
+class BlogCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+
 
 class Blog(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to="blogs/")
-    content = RichTextField()
 
-    meta_title = models.CharField(max_length=255, blank=True)
+    category = models.ForeignKey(
+        BlogCategory,
+        on_delete=models.SET_NULL,
+        related_name="blogs",
+        null=True,
+        blank=True
+    )
+
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True)
+
+    image = models.ImageField(upload_to="blogs/")
+    short_description = models.TextField(blank=True, default="")
+
+    content = CKEditor5Field("Text", config_name="extends")
+
+    author = models.CharField(max_length=100, default="Admin")
+
+    meta_title = models.CharField(max_length=200, blank=True)
     meta_description = models.TextField(blank=True)
-    keywords = models.CharField(max_length=255, blank=True)
+    meta_keywords = models.CharField(max_length=300, blank=True)
 
     is_published = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+
+        if not self.slug:
+
+            base_slug = slugify(self.title)
+            unique_slug = base_slug
+
+            while Blog.objects.filter(
+                slug=unique_slug
+            ).exists():
+
+                unique_slug = f"{base_slug}-{uuid.uuid4().hex[:4]}"
+
+            self.slug = unique_slug
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
-    
-
-    

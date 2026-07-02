@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="blog-admin-wrapper">
+
+    <form method="POST" enctype="multipart/form-data" class="blog-admin-form">
+
+        {% csrf_token %}
+
+        <!-- LEFT -->
+        <div class="blog-main-area">
+
+            <!-- BASIC INFO -->
+            <div class="blog-admin-card">
+
+                <h2>Edit Blog</h2>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+                        <label>Blog Title</label>
+                        <input type="text"
+                               name="title"
+                               value="{{ blog.title }}"
+                               required>
+                    </div>
+
+                    <div class="blog-input-group">
+                        <label>Category</label>
+
+                        <select name="category">
+
+                            {% for category in categories %}
+
+                            <option value="{{ category.id }}"
+                            {% if blog.category.id == category.id %}
+                            selected
+                            {% endif %}>
+
+                                {{ category.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+                        <label>Author</label>
+
+                        <input type="text"
+                               name="author"
+                               value="{{ blog.author }}">
+                    </div>
+
+                    <div class="blog-input-group">
+
+                        <label>Change Image</label>
+
+                        <input type="file" name="image">
+
+                        <br>
+
+                        <img src="{{ blog.image.url }}"
+                             width="120">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="blog-admin-card">
+
+                <h2>Blog Content</h2>
+
+                {{ form.content }}
+
+                {{ form.media }}
+
+            </div>
+
+
+            <!-- SEO -->
+
+            <div class="blog-admin-card">
+
+                <h2>SEO Settings</h2>
+
+                <div class="blog-row">
+
+                    <div class="blog-input-group">
+
+                        <label>Meta Title</label>
+
+                        <input type="text"
+                               name="meta_title"
+                               value="{{ blog.meta_title }}">
+
+                    </div>
+
+                    <div class="blog-input-group">
+
+                        <label>Meta Keywords</label>
+
+                        <input type="text"
+                               name="meta_keywords"
+                               value="{{ blog.meta_keywords }}">
+
+                    </div>
+
+                </div>
+
+                <div class="blog-input-group">
+
+                    <label>Meta Description</label>
+
+                    <textarea name="meta_description"
+                              rows="4">{{ blog.meta_description }}</textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="blog-side-area">
+
+            <div class="blog-admin-sidecard">
+
+                <h2>Additional Settings</h2>
+
+                <textarea name="short_description"
+                          rows="5">{{ blog.short_description }}</textarea>
+
+                <button type="submit"
+                        class="blog-publish-btn">
+
+                    Update Blog
+
+                </button>
+
+                <a href="{% url 'blog_list' %}"
+                   class="cancel-btn">
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

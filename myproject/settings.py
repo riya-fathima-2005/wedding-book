@@ -21,7 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)   
+
+
+
+# DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)   
+# DJANGO_DEBUG=True
+
+DEBUG = True
 
 ALLOWED_HOSTS = [
     ".onrender.com",
@@ -42,10 +48,24 @@ INSTALLED_APPS = [
     'backend.apps.BackendConfig',
     'rest_framework',
     'corsheaders',
-    'ckeditor',
+    'django_ckeditor_5',
     'cloudinary',
     'cloudinary_storage',
 ]
+
+CKEDITOR_5_CONFIGS = {
+    'extends': {
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'link',
+            'bulletedList', 'numberedList',
+            'blockQuote', 'imageUpload',
+            'insertTable', 'mediaEmbed',
+            'undo', 'redo'
+        ],
+    }
+}
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

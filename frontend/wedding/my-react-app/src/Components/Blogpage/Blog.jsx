@@ -1,113 +1,166 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import blogpic from "../../assets/Images/freepik1.jpeg";
-import blogpic1 from "../../assets/Images/freepik2.jpeg";
 import wed7 from "../../assets/Images/banimgjpj.jpeg";
-
 import "../../assets/Style/Blog.css";
 
 const Blog = () => {
+
+  const [blogs, setBlogs] = useState([]);
+
+  // Backend API URL
+  const API_URL = "https://wedding-book.onrender.com";
+  // For local testing:
+  // const API_URL = "http://127.0.0.1:8000";
+
+
+  useEffect(() => {
+
+  console.log("useEffect running");
+
+  fetch(`${API_URL}/api/blogs/`)
+    .then((res) => {
+      console.log("Response:", res);
+      return res.json();
+    })
+    .then((data) => {
+      console.log("DATA:", data);
+      setBlogs(data);
+    })
+    .catch((error) => {
+      console.log("ERROR:", error);
+    });
+
+}, []);
+
   return (
     <>
-      {/* BANNER */}
-         {/* New Banner First */}
-         <div className="banner-wrapper">
-           <div className="banner-box">
-             <img src={wed7} alt="decor" className="decore-img" />
-     
-             <div className="banner-overlay"></div>
-     
-             <div className="banner-content">
-               
-               <h2 className="overlay-text">BLOG  </h2>
-             </div>
-           </div>
-         </div>
-     
-      {/* BLOG SECTION */}
-     <div className="luxury-blog-section">
-  <div className="container">
+      {/* Banner Section */}
+      <div className="banner-wrapper">
 
-    <div className="blog-heading-area text-center">
-      <p className="blog-subtitle">OUR JOURNAL</p>
-      <h2 className="blog-main-heading">
-        Stories & Wedding Traditions
-      </h2>
-    </div>
+        <div className="banner-box">
 
-    <div className="row gy-5">
+          <img
+            src={wed7}
+            alt="decor"
+            className="decore-img"
+          />
 
-      {/* BLOG 1 */}
+          <div className="banner-overlay"></div>
 
-      <div className="col-lg-6">
-        <div className="luxury-blog-card">
+          <div className="banner-content">
 
-          <div className="blog-image-wrapper">
-            <img src={blogpic} alt="blog" />
-          </div>
-
-          <div className="blog-content">
-
-            <span className="blog-category">
-              Wedding Culture
-            </span>
-
-            <h3>
-              Culinary Traditions of Indian Weddings
-            </h3>
-
-            <div>
-              Attending an Indian wedding is a sensory experience filled with vibrant colors,
-              rituals, music and unforgettable flavors deeply rooted in tradition.
-            </div>
-
-            <Link to="/blogs" className="luxury-btn">
-              Read Article
-            </Link>
+            <h2 className="overlay-text">
+              BLOG
+            </h2>
 
           </div>
 
         </div>
+
       </div>
 
 
-      {/* BLOG 2 */}
+      {/* Blog Section */}
 
-      <div className="col-lg-6">
-        <div className="luxury-blog-card">
+      <div className="luxury-blog-section">
 
-          <div className="blog-image-wrapper">
-            <img src={blogpic1} alt="blog" />
+        <div className="container">
+
+          <div className="blog-heading-area text-center">
+
+            <p className="blog-subtitle">
+              OUR JOURNAL
+            </p>
+
+            <h2 className="blog-main-heading">
+              Stories & Wedding Traditions
+            </h2>
+
           </div>
 
-          <div className="blog-content">
 
-            <span className="blog-category">
-              Sacred Rituals
-            </span>
+          {/* If no blogs */}
 
-            <h3>
-              Seven Promises, One Sacred Bond
+          {blogs.length === 0 ? (
+
+            <h3 style={{ textAlign: "center" }}>
+              No Blogs Available
             </h3>
 
-            <div>
-              Discover the spiritual significance behind the sacred saat phere ritual,
-              symbolizing lifelong commitment and eternal companionship.
+          ) : (
+
+            <div className="row gy-5">
+
+              {blogs.map((blog) => (
+
+                <div
+                  className="col-lg-6"
+                  key={blog.id}
+                >
+
+                  <div className="luxury-blog-card">
+
+                    {/* Blog Image */}
+
+                    <div className="blog-image-wrapper">
+
+                      <img
+                        src={blog.image}   
+                        alt={blog.title}
+                      />
+
+                    </div>
+
+
+                    {/* Blog Content */}
+
+                    <div className="blog-content">
+
+                      <span className="blog-category">
+
+                        {blog.category}
+
+                      </span>
+
+                      <h3>
+
+                        {blog.title}
+
+                      </h3>
+
+                      <div>
+
+                        {blog.short_description}
+
+                      </div>
+
+
+                      <Link
+                        to={`/blogs/${blog.slug}`}
+                        className="luxury-btn"
+                      >
+
+                        Read Article
+
+                      </Link>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ))}
+
             </div>
 
-            <Link to="/blogss" className="luxury-btn">
-              Read Article
-            </Link>
-
-          </div>
+          )}
 
         </div>
+
       </div>
 
-    </div>
-  </div>
-</div>
     </>
   );
 };

@@ -84,8 +84,13 @@ path(
     # Venue Map Dashboard
     path('venue-map/', views.venue_map, name='venue_map'),
 
-    # Mail
-    # path("api/contact/", views.ContactAPIView.as_view()),
+    # BLOG
+    path("blog/", views.blog, name="blog"),
+    path( "blog-list/",views.blog_list, name="blog_list"),
+    path("blog-list/", views.blog_list, name="blog_list"),
+    path("edit-blog/<int:id>/", views.edit_blog, name="edit_blog"),
+    path("delete-blog/<int:id>/", views.delete_blog, name="delete_blog"),   
+   path("api/blogs/", views.blog_api, name="blog_api"),
 
 
 
