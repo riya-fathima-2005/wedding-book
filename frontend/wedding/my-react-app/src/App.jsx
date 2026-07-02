@@ -15,7 +15,7 @@ import Costume from "./Components/Costumes/Costume";
 import Faqcontent from "./Components/Faqpage/Faqcontent";
 import Hostsec from "./Components/Host/Hostsec";
 import Blogpage from "./Components/Blogpage/Blogpage";
-import Subblog from "./Components/Subblog/Subblog";
+
 import Subblogss from "./Components/Subblogs/Subblogss";
 import Christians from "./Components/Celebrations/Celebrations";
 import Contacted from "./Components/Contacting/Contacted";
@@ -66,7 +66,6 @@ function App() {
     "/host",
     "/blog",
     "/blogs",
-    "/blogss",
     "/christ",
     "/contact",
     "/hostdetails",
@@ -82,9 +81,10 @@ function App() {
     "/Smallprofile",
   ];
 
-  const isNotFound =
-    !validRoutes.includes(location.pathname) &&
-    !location.pathname.startsWith("/morevenue/");
+const isNotFound =
+  !validRoutes.includes(location.pathname) &&
+  !location.pathname.startsWith("/morevenue/") &&
+  !location.pathname.startsWith("/blogs/");
 
   const hideLayout =
     location.pathname === "/login" ||
@@ -104,9 +104,9 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/venue" element={<VenueNearby />} />
         <Route path="/host" element={<Hostsec />} />
-        <Route path="/blog" element={<Blogpage />} />
-        <Route path="/blogs" element={<Subblog />} />
-        <Route path="/blogss" element={<Subblogss />} />
+        {/* <Route path="/blog" element={<Blogpage />} /> */}
+      <Route path="/blog" element={<Blogpage />} />
+<Route path="/blogs/:slug" element={<Subblogss />} />
         <Route path="/christ" element={<Christians />} />
         <Route path="/contact" element={<Contacted />} />
         <Route path="/hostdetails" element={<Hostdetails />} />

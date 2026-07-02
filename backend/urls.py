@@ -86,11 +86,12 @@ path(
 
     # BLOG
     path("blog/", views.blog, name="blog"),
-    path( "blog-list/",views.blog_list, name="blog_list"),
     path("blog-list/", views.blog_list, name="blog_list"),
     path("edit-blog/<int:id>/", views.edit_blog, name="edit_blog"),
     path("delete-blog/<int:id>/", views.delete_blog, name="delete_blog"),   
    path("api/blogs/", views.blog_api, name="blog_api"),
+   path("api/blogs/<slug:slug>/", views.single_blog_api, name="single_blog_api"),
+
 
 
 

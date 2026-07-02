@@ -1682,4 +1682,36 @@ def blog_api(request):
     )
 
 
+def single_blog_api(request, slug):
+
+    blog = Blog.objects.get(
+        slug=slug
+    )
+
+    data = {
+
+        "title": blog.title,
+
+        "category":
+        blog.category.name if blog.category else "",
+
+        "image":
+        blog.image.url if blog.image else "",
+
+        "content":
+        blog.content,
+
+        "author":
+        blog.author,
+
+        "meta_title":
+        blog.meta_title,
+
+        "meta_description":
+        blog.meta_description
+
+    }
+
+    return JsonResponse(data)
+    
 # ================= OTHER PAGES =================
