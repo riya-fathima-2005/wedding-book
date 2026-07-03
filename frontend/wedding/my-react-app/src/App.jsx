@@ -82,7 +82,13 @@ function App() {
     "/Smallprofile",
   ];
 
+const isAdminRoute =
+  location.pathname.startsWith("/admin") ||
+  location.pathname.startsWith("/django-admin") ||
+  location.pathname.startsWith("/api");
+
 const isNotFound =
+  !isAdminRoute &&
   !validRoutes.includes(location.pathname) &&
   !location.pathname.startsWith("/morevenue/") &&
   !location.pathname.startsWith("/blogs/");
