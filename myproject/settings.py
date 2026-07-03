@@ -31,8 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".onrender.com",
+    ".vercel.app",
     "127.0.0.1",
-    "localhost",
+    "localhost"
 ]
 
 

@@ -2,6 +2,7 @@
 URL configuration for myproject project.
 """
 
+from backend import views
 from django.contrib import admin
 from django.urls import path, include
 
@@ -18,6 +19,8 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
 
     path('django-admin/', admin.site.urls),
+
+    path("admin/", views.index, name="dashboard"),
 
     # APP URLS
     path('', include('backend.urls')),
