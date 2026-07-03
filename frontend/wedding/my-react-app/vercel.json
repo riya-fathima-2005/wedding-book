@@ -1,24 +1,32 @@
 {
   "rewrites": [
     {
-      "source": "/admin/:path*",
-      "destination": "https://wedding-book.onrender.com/admin/:path*"
+      "source": "/admin",
+      "destination": "https://wedding-book.onrender.com/admin"
     },
     {
-      "source": "/django-admin/:path*",
-      "destination": "https://wedding-book.onrender.com/django-admin/:path*"
+      "source": "/admin/:match*",
+      "destination": "https://wedding-book.onrender.com/admin/:match*"
     },
     {
-      "source": "/static/:path*",
-      "destination": "https://wedding-book.onrender.com/static/:path*"
+      "source": "/django-admin",
+      "destination": "https://wedding-book.onrender.com/django-admin"
     },
     {
-      "source": "/media/:path*",
-      "destination": "https://wedding-book.onrender.com/media/:path*"
+      "source": "/django-admin/:match*",
+      "destination": "https://wedding-book.onrender.com/django-admin/:match*"
     },
     {
-      "source": "/api/:path*",
-      "destination": "https://wedding-book.onrender.com/api/:path*"
+      "source": "/api/:match*",
+      "destination": "https://wedding-book.onrender.com/api/:match*"
+    },
+    {
+      "source": "/static/:match*",
+      "destination": "https://wedding-book.onrender.com/static/:match*"
+    },
+    {
+      "source": "/media/:match*",
+      "destination": "https://wedding-book.onrender.com/media/:match*"
     },
     {
       "source": "/(.*)",
