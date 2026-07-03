@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)   
 # DJANGO_DEBUG=True
 
-DEBUG = True
+DEBUG =  False
 
 ALLOWED_HOSTS = [
     ".onrender.com",
