@@ -34,7 +34,7 @@ path(
 
     # Venue
     path('venue/<int:id>/', views.venue_detail, name='venue_detail'),
-    path('venues/', views.venues, name='venues'),
+    path('admin/venues/', views.venues, name='venues'),
     path('edit-venue/<int:id>/', views.edit_venue, name='edit_venue'),
     path('delete-venue/<int:id>/', views.delete_venue, name='delete_venue'),
     path('add-venue/', views.add_venue, name='add_venue'),
@@ -45,7 +45,7 @@ path(
     path('api/venue-map/', views.VenueMapAPIView.as_view()),
 
     # Booking
-    path('bookings/', views.bookings, name='bookings'),
+    path('admin/bookings/', views.bookings, name='bookings'),
     path('view_booking/<int:id>/', views.view_booking, name='view_booking'),
     path('edit_booking/<int:id>/', views.edit_booking, name='edit_booking'),
     path('delete_booking/<int:id>/', views.delete_booking, name='delete_booking'),
