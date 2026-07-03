@@ -49,6 +49,11 @@
     { "source": "/static/:path*", "destination": "https://wedding-book.onrender.com/static/:path*" },
 
     { "source": "/api/:path*", "destination": "https://wedding-book.onrender.com/api/:path*" },
+    {
+  "source": "/accounts/:path*",
+  "destination": "https://wedding-book.onrender.com/accounts/:path*"
+}
+
 
     { "source": "/(.*)", "destination": "/index.html" }
   ]
