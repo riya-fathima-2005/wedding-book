@@ -82,11 +82,11 @@ const Subblogss = () => {
 
           {/* Dynamic Category */}
 
-          <p className="article-category">
+          <div className="article-category">
 
             {blog.category}
 
-          </p>
+          </div>
 
 
           {/* Dynamic Title */}
@@ -108,7 +108,7 @@ const Subblogss = () => {
               src={blog.image}
               alt={blog.title}
               style={{
-                width: "100%",
+                width: "800px",
                 marginBottom: "30px",
                 borderRadius: "10px"
               }}

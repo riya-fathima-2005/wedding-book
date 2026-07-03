@@ -1,11 +1,24 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
+      "source": "/admin/:path*",
+      "destination": "https://wedding-book.onrender.com/admin/:path*"
     },
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "source": "/django-admin/:path*",
+      "destination": "https://wedding-book.onrender.com/django-admin/:path*"
+    },
+    {
+      "source": "/static/:path*",
+      "destination": "https://wedding-book.onrender.com/static/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://wedding-book.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

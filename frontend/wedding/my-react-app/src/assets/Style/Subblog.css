@@ -1,3 +1,59 @@
+
+
+
+.dynamic-blog-title{
+    color:black;
+    font-size:38px;
+    font-weight:700;
+    margin-bottom:20px;
+    line-height:1.4;
+}
+
+.dynamic-blog-description{
+    color:black;
+    font-size:17px;
+    line-height:1.9;
+}
+
+.dynamic-blog-content{
+    color:black;
+    font-size:17px;
+    line-height:2;
+}
+
+/* CKEditor headings */
+
+.dynamic-blog-content h1,
+.dynamic-blog-content h2,
+.dynamic-blog-content h3,
+.dynamic-blog-content h4,
+.dynamic-blog-content h5{
+    color:black;
+    margin-top:30px;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+/* Paragraph */
+
+.dynamic-blog-content p{
+    color:black;
+    margin-bottom:18px;
+    line-height:2;
+}
+
+/* Lists */
+
+.dynamic-blog-content ul,
+.dynamic-blog-content ol{
+    margin-left:25px;
+    margin-bottom:20px;
+}
+
+.dynamic-blog-content li{
+    margin-bottom:10px;
+    color:black;
+}
 /* MAIN */
 
 .luxury-blog-detail{
@@ -36,7 +92,7 @@
 }
 
 .article-text{
-  color:#666;
+  color:#0f0f0f;
   font-size:16px;
   line-height:2;
   text-align:justify;

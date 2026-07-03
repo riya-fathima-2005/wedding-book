@@ -24,6 +24,7 @@ import Hostdetails from "./Components/Howhost/Hostdetails";
 import VenueNearby from "./Components/Venue/VenueNearby";
 import NotFound from "./Components/NotFound";
 
+
 // AUTH
 import Login from "./Components/Login/Login";
 import Sign from "./Components/Sign/Sign";
@@ -98,6 +99,8 @@ const isNotFound =
 
       <Routes>
         <Route path="/" element={<Home />} />
+
+
         <Route path="/wedding" element={<Wedding />} />
         <Route path="/faqqq" element={<Faqcontent />} />
         <Route path="/about" element={<Aboutpage />} />
@@ -114,6 +117,7 @@ const isNotFound =
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-success" element={<Success />} />
         <Route path="/wedding-details" element={<WeddingDetails />} />
+        
 
         {/* AUTH */}
         <Route path="/login" element={<Login />} />
@@ -133,6 +137,8 @@ const isNotFound =
               <Reserve />
             </ProtectedRoute>
           }
+
+          
         />
 
         {/* VENUE GALLERY */}

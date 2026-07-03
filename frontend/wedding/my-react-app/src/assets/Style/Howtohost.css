@@ -76,7 +76,7 @@
 h3 {
   font-size: 22px;
   font-weight: 600;
-  color: #f1e6e6;
+  color: #0c0c0c;
   margin-top: 35px;
   margin-bottom: 20px;
   border-left: 4px solid #000;
@@ -111,7 +111,7 @@ input[type="file"] {
 }
 
 p {
-  color: #efebeb;
+  color: #0f0f0f;
   font-size: 14px;
 }
 
