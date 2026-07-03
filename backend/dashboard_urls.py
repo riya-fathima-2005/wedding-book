@@ -20,8 +20,6 @@ urlpatterns = [
     path('edit-user/<int:id>/', views.edit_user, name='edit_user'),
     path('delete-user/<int:id>/', views.delete_user, name='delete_user'),
 
-    path('allusergroups/', views.allusergroups, name='allusergroups'),
-
     path('payment/', views.payment_list, name='payment'),
 
     path('venue-map/', views.venue_map, name='venue_map'),
