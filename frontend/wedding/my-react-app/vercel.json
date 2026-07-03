@@ -1,24 +1,55 @@
 {
   "rewrites": [
-    {
-      "source": "/admin/:path*",
-      "destination": "https://wedding-book.onrender.com/admin/:path*"
-    },
-    {
-      "source": "/django-admin/:path*",
-      "destination": "https://wedding-book.onrender.com/django-admin/:path*"
-    },
-    {
-      "source": "/static/:path*",
-      "destination": "https://wedding-book.onrender.com/static/:path*"
-    },
-    {
-      "source": "/api/:path*",
-      "destination": "https://wedding-book.onrender.com/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/admin/:path*", "destination": "https://wedding-book.onrender.com/admin/:path*" },
+    { "source": "/django-admin/:path*", "destination": "https://wedding-book.onrender.com/django-admin/:path*" },
+
+    { "source": "/register/:path*", "destination": "https://wedding-book.onrender.com/register/:path*" },
+    { "source": "/login/:path*", "destination": "https://wedding-book.onrender.com/login/:path*" },
+    { "source": "/logout/:path*", "destination": "https://wedding-book.onrender.com/logout/:path*" },
+    { "source": "/signup/:path*", "destination": "https://wedding-book.onrender.com/signup/:path*" },
+
+    { "source": "/venue/:path*", "destination": "https://wedding-book.onrender.com/venue/:path*" },
+    { "source": "/venues/:path*", "destination": "https://wedding-book.onrender.com/venues/:path*" },
+    { "source": "/edit-venue/:path*", "destination": "https://wedding-book.onrender.com/edit-venue/:path*" },
+    { "source": "/delete-venue/:path*", "destination": "https://wedding-book.onrender.com/delete-venue/:path*" },
+    { "source": "/add-venue/:path*", "destination": "https://wedding-book.onrender.com/add-venue/:path*" },
+
+    { "source": "/bookings/:path*", "destination": "https://wedding-book.onrender.com/bookings/:path*" },
+    { "source": "/view_booking/:path*", "destination": "https://wedding-book.onrender.com/view_booking/:path*" },
+    { "source": "/edit_booking/:path*", "destination": "https://wedding-book.onrender.com/edit_booking/:path*" },
+    { "source": "/delete_booking/:path*", "destination": "https://wedding-book.onrender.com/delete_booking/:path*" },
+    { "source": "/my_bookings/:path*", "destination": "https://wedding-book.onrender.com/my_bookings/:path*" },
+    { "source": "/create-booking/:path*", "destination": "https://wedding-book.onrender.com/create-booking/:path*" },
+
+    { "source": "/allusers/:path*", "destination": "https://wedding-book.onrender.com/allusers/:path*" },
+    { "source": "/add_user/:path*", "destination": "https://wedding-book.onrender.com/add_user/:path*" },
+    { "source": "/delete-user/:path*", "destination": "https://wedding-book.onrender.com/delete-user/:path*" },
+    { "source": "/edit-user/:path*", "destination": "https://wedding-book.onrender.com/edit-user/:path*" },
+
+    { "source": "/allusergroups/:path*", "destination": "https://wedding-book.onrender.com/allusergroups/:path*" },
+    { "source": "/create-groups/:path*", "destination": "https://wedding-book.onrender.com/create-groups/:path*" },
+    { "source": "/add_allusergroups/:path*", "destination": "https://wedding-book.onrender.com/add_allusergroups/:path*" },
+    { "source": "/edit_allusergroups/:path*", "destination": "https://wedding-book.onrender.com/edit_allusergroups/:path*" },
+    { "source": "/delete-group/:path*", "destination": "https://wedding-book.onrender.com/delete-group/:path*" },
+
+    { "source": "/profile/:path*", "destination": "https://wedding-book.onrender.com/profile/:path*" },
+    { "source": "/edit-profile/:path*", "destination": "https://wedding-book.onrender.com/edit-profile/:path*" },
+
+    { "source": "/payment/:path*", "destination": "https://wedding-book.onrender.com/payment/:path*" },
+    { "source": "/create-payment/:path*", "destination": "https://wedding-book.onrender.com/create-payment/:path*" },
+    { "source": "/save-payment/:path*", "destination": "https://wedding-book.onrender.com/save-payment/:path*" },
+
+    { "source": "/venue-map/:path*", "destination": "https://wedding-book.onrender.com/venue-map/:path*" },
+
+    { "source": "/blog/:path*", "destination": "https://wedding-book.onrender.com/blog/:path*" },
+    { "source": "/blog-list/:path*", "destination": "https://wedding-book.onrender.com/blog-list/:path*" },
+    { "source": "/edit-blog/:path*", "destination": "https://wedding-book.onrender.com/edit-blog/:path*" },
+    { "source": "/delete-blog/:path*", "destination": "https://wedding-book.onrender.com/delete-blog/:path*" },
+
+    { "source": "/static/:path*", "destination": "https://wedding-book.onrender.com/static/:path*" },
+
+    { "source": "/api/:path*", "destination": "https://wedding-book.onrender.com/api/:path*" },
+
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
