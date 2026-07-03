@@ -9,6 +9,14 @@
       "destination": "https://wedding-book.onrender.com/django-admin/:path*"
     },
     {
+      "source": "/static/:path*",
+      "destination": "https://wedding-book.onrender.com/static/:path*"
+    },
+    {
+      "source": "/media/:path*",
+      "destination": "https://wedding-book.onrender.com/media/:path*"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://wedding-book.onrender.com/api/:path*"
     },
