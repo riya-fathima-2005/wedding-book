@@ -10,7 +10,8 @@ from django.db.models import Sum
 from .models import Blog, BlogCategory
 from .forms import BlogForm
 
-
+from .models import BlogCategory
+from django.utils.text import slugify
 
 import razorpay
 from django.http import JsonResponse
@@ -1713,5 +1714,26 @@ def single_blog_api(request, slug):
     }
 
     return JsonResponse(data)
+
+
+
+def add_category(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get("name")
+
+        BlogCategory.objects.create(
+            name=name
+            # slug automatically save() il generate aakum
+        )
+
+        return redirect("add_category")
+
+    return render(
+        request,
+        "add_category.html"
+    )
+
     
 # ================= OTHER PAGES =================

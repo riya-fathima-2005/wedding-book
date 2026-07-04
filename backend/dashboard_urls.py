@@ -31,6 +31,8 @@ urlpatterns = [
     path('profile/', views.profile_page, name='profile'),
 path('edit-profile/', views.edit_profile, name='edit_profile'),
 
+path("add-category/", views.add_category, name="add_category"),
+
 
 # THIS ONE MISSING
 path('save_permission/<int:group_id>/', views.save_permission, name='save_permission'),
