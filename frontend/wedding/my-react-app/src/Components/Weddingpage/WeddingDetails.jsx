@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../../assets/Style/WeddingDetails.css";
@@ -8,71 +8,75 @@ const WeddingDetails = () => {
   const navigate = useNavigate();
 
   const wedding = location.state;
+
+  const [unlocked, setUnlocked] = useState(false);
+
   const handleUnlockPayment = async () => {
-  try {
-    const paymentResponse = await axios.post(
-      "https://wedding-book.onrender.com/create-payment/",
-      {
-        amount: 999,
-      }
-    );
-
-    const order = paymentResponse.data;
-
-    const options = {
-      key: "rzp_test_SyG00JPy3MbhJq",
-      amount: order.amount,
-      currency: order.currency,
-      order_id: order.id,
-
-      name: "Wedding Book",
-      description: "Unlock Premium Wedding Details",
-
-      handler: async function (response) {
-        try {
-          await axios.post(
-            "https://wedding-book.onrender.com/save-payment/",
-            {
-              payer_name:
-                JSON.parse(localStorage.getItem("user"))?.username ||
-                "Guest",
-
-              venue_name: `${wedding.firstname} & ${wedding.partner_firstname}`,
-
-              amount: 999,
-
-              razorpay_order_id: order.id,
-
-              razorpay_payment_id:
-                response.razorpay_payment_id,
-            }
-          );
-
-          alert("🎉 Payment Successful!");
-
-        } catch (error) {
-          console.log(error);
-
-          alert("Payment saved failed");
+    try {
+      const paymentResponse = await axios.post(
+        "https://wedding-book.onrender.com/create-payment/",
+        {
+          amount: 999,
         }
-      },
+      );
 
-      theme: {
-        color: "#000000",
-      },
-    };
+      const order = paymentResponse.data;
 
-    const razorpay = new window.Razorpay(options);
+      const options = {
+        key: "rzp_test_SyG00JPy3MbhJq",
+        amount: order.amount,
+        currency: order.currency,
+        order_id: order.id,
 
-    razorpay.open();
+        name: "Wedding Book",
+        description: "Unlock Premium Wedding Details",
 
-  } catch (error) {
-    console.log(error);
+        handler: async function (response) {
+          try {
+            await axios.post(
+              "https://wedding-book.onrender.com/save-payment/",
+              {
+                payer_name:
+                  JSON.parse(localStorage.getItem("user"))?.username ||
+                  "Guest",
 
-    alert("Unable to start payment.");
-  }
-};
+                venue_name: `${wedding.firstname} & ${wedding.partner_firstname}`,
 
+                amount: 999,
+
+                razorpay_order_id: order.id,
+
+                razorpay_payment_id:
+                  response.razorpay_payment_id,
+              }
+            );
+
+            alert("🎉 Payment Successful!");
+
+            setUnlocked(true);
+
+          } catch (error) {
+            console.log(error);
+
+            alert("Payment save failed");
+          }
+        },
+
+        theme: {
+          color: "#000000",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+
+      razorpay.open();
+
+    } catch (error) {
+      console.log(error);
+
+      alert("Unable to start payment.");
+    }
+  };
 
   if (!wedding) {
     return (
@@ -84,9 +88,10 @@ const WeddingDetails = () => {
 
   return (
     <div className="wedding-details-page1">
+
       <div className="wedding-profile-page">
 
-        {/* Left Side Image */}
+        {/* Left Side */}
         <div>
           {wedding.profile_image ? (
             <img
@@ -110,7 +115,8 @@ const WeddingDetails = () => {
             {wedding.firstname} & {wedding.partner_firstname}
           </h2>
 
-          {/* Free Details */}
+          {/* FREE DETAILS */}
+
           <div className="detail-box">
             <strong>Wedding Date</strong>
             <p>{wedding.wedding_date || "Not Added"}</p>
@@ -131,59 +137,121 @@ const WeddingDetails = () => {
             <p>{wedding.description || "No Description Added"}</p>
           </div>
 
-          {/* Premium Card */}
-          <div className="premium-lock-card">
+          {/* PREMIUM SECTION */}
 
-            <h3>🔒 Premium Wedding Details</h3>
+          {!unlocked ? (
 
-            <p>
-              Unlock complete wedding information with a one-time payment.
-            </p>
+            <div className="premium-lock-card">
 
-            <ul className="premium-list">
-              <li>✔ Wedding Venue</li>
-              <li>✔ Contact Number</li>
-              <li>✔ Email Address</li>
-              <li>✔ Full Address</li>
-              <li>✔ Google Map Location</li>
-              <li>✔ Download Invitation Card</li>
-            </ul>
+              <h3>🔒 Premium Wedding Details</h3>
 
-            <h2 className="premium-price">
-              ₹999
-            </h2>
+              <p>
+                Unlock complete wedding information with a one-time payment.
+              </p>
 
-            <div className="premium-btn-group">
+              <ul className="premium-list">
+                <li>✔ Wedding Venue</li>
+                <li>✔ Contact Number</li>
+                <li>✔ Email Address</li>
+                <li>✔ Full Address</li>
+                <li>✔ Google Map Location</li>
+                <li>✔ Download Invitation Card</li>
+              </ul>
 
-  <button
-    className="btn btn-dark back-btn"
-    onClick={() => navigate(-1)}
+              <h2 className="premium-price">
+                ₹999
+              </h2>
+
+              <div className="premium-btn-group">
+
+                <button
+                  className="btn btn-dark back-btn"
+                  onClick={() => navigate(-1)}
+                >
+                   Back
+                </button>
+
+                <button
+                  className="btn btn-dark back-btn" style={{ marginLeft: "25px" }}
+                  onClick={handleUnlockPayment}
+                >
+                  🔓 Unlock Now
+                </button>
+
+              </div>
+
+              <div className="premium-note">
+                One-time payment. Once purchased you can access these details anytime.
+              </div>
+
+            </div>
+
+          ) : (
+
+            <div className="premium-lock-card">
+
+              <h3>🎉 Premium Details Unlocked</h3>
+
+              <div className="detail-box">
+                <strong>Bride & Groom</strong>
+                <p>
+                  {wedding.firstname} & {wedding.partner_firstname}
+                </p>
+              </div>
+
+              <div className="detail-box">
+                <strong>Email</strong>
+                <p>{wedding.email}</p>
+              </div>
+
+              <div className="detail-box">
+                <strong>Phone Number</strong>
+                <p>{wedding.phone}</p>
+              </div>
+
+              <div className="detail-box">
+                <strong>Wedding Venue</strong>
+                <p>{wedding.custom_venue}</p>
+              </div>
+
+              <div className="detail-box">
+                <strong>Manager Contact</strong>
+                <p>{wedding.manager_phone || "Not Added"}</p>
+              </div>
+
+              {wedding.latitude && wedding.longitude && (
+
+                <a
+                  href={`https://www.google.com/maps?q=${wedding.latitude},${wedding.longitude}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-dark mt-3"
+                >
+                  View Location
+                </a>
+
+              )}
+{wedding.invitation && (
+  <a
+    href={wedding.invitation}
+    target="_blank"
+    rel="noreferrer"
+    download
+    className="btn btn-success mt-3"
   >
-    Back
-  </button>
- <span style={{ marginLeft: "40px" }}>
-   <button
-  className="btn btn-dark unlock-btn"
-  onClick={handleUnlockPayment}
->
-  🔓 Unlock Now
-</button>
- </span>
+    ⬇ Download Invitation
+  </a>
+)}
+            </div>
 
-
-</div>
-
-<div className="premium-note">
-  One-time payment. Once purchased, you can access these details anytime.
-</div>
-
-          </div>
+          )}
 
         </div>
+
       </div>
+
     </div>
   );
 };
-
 
 export default WeddingDetails;

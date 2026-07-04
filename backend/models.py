@@ -324,6 +324,12 @@ class Wedding(models.Model):
     blank=True,
     null=True
 )
+    invitation = models.FileField(
+    upload_to="wedding_invitations/",
+    blank=True,
+    null=True
+)
+    
 
     youtube_link = models.URLField(
         blank=True,

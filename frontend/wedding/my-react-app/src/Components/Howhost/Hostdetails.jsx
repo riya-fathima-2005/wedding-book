@@ -23,6 +23,7 @@ const [longitude, setLongitude] = useState("");
 const [venues, setVenues] = useState([]);
 const [loading, setLoading] = useState(true);
 const [submitting, setSubmitting] = useState(false);
+const [invitation, setInvitation] = useState(null);
 
 const foodOptions = [
   "Vegetarian",
@@ -284,6 +285,14 @@ if (window.selectedProfileImage) {
     window.selectedProfileImage
   );
 }
+// Wedding Invitation
+if (invitation) {
+  weddingPayload.append(
+    "invitation",
+    invitation
+  );
+}
+
 
 try {
 
@@ -469,6 +478,24 @@ try {
                 ))}
               </div>
             </div>
+
+            <div className="col-md-6 mb-3">
+
+  <label className="form-label">
+    Wedding Invitation
+  </label>
+
+  <input
+    type="file"
+    accept=".pdf,.jpg,.jpeg,.png"
+    className="form-control"
+    onChange={(e) =>
+      setInvitation(e.target.files[0])
+    }
+  />
+
+</div>
+
 
             {/* Language */}
 
