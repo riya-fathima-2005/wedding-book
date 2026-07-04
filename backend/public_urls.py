@@ -24,6 +24,17 @@ urlpatterns = [
     path('api/change-password/', ChangePasswordAPIView.as_view(), name='change-password'),
 
     path('api/weddings/', WeddingListCreateView.as_view(), name='weddings'),
+    path(
+    "create-payment/",
+    views.create_payment,
+    name="create_payment"
+),
+
+path(
+    "save-payment/",
+    views.save_payment,
+    name="save_payment"
+),
 
     path("api/blogs/", views.blog_api, name="blog_api"),
     path("api/blogs/<slug:slug>/", views.single_blog_api, name="single_blog_api"),
