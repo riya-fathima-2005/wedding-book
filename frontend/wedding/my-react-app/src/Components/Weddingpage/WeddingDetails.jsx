@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../../assets/Style/WeddingDetails.css";
 
@@ -7,8 +8,71 @@ const WeddingDetails = () => {
   const navigate = useNavigate();
 
   const wedding = location.state;
+  const handleUnlockPayment = async () => {
+  try {
+    const paymentResponse = await axios.post(
+      "https://wedding-book.onrender.com/create-payment/",
+      {
+        amount: 999,
+      }
+    );
 
-console.log(wedding);
+    const order = paymentResponse.data;
+
+    const options = {
+      key: "rzp_test_SyG00JPy3MbhJq",
+      amount: order.amount,
+      currency: order.currency,
+      order_id: order.id,
+
+      name: "Wedding Book",
+      description: "Unlock Premium Wedding Details",
+
+      handler: async function (response) {
+        try {
+          await axios.post(
+            "https://wedding-book.onrender.com/save-payment/",
+            {
+              payer_name:
+                JSON.parse(localStorage.getItem("user"))?.username ||
+                "Guest",
+
+              venue_name: `${wedding.firstname} & ${wedding.partner_firstname}`,
+
+              amount: 999,
+
+              razorpay_order_id: order.id,
+
+              razorpay_payment_id:
+                response.razorpay_payment_id,
+            }
+          );
+
+          alert("🎉 Payment Successful!");
+
+        } catch (error) {
+          console.log(error);
+
+          alert("Payment saved failed");
+        }
+      },
+
+      theme: {
+        color: "#000000",
+      },
+    };
+
+    const razorpay = new window.Razorpay(options);
+
+    razorpay.open();
+
+  } catch (error) {
+    console.log(error);
+
+    alert("Unable to start payment.");
+  }
+};
+
 
   if (!wedding) {
     return (
@@ -19,133 +83,107 @@ console.log(wedding);
   }
 
   return (
-<div className="wedding-details-page1">
+    <div className="wedding-details-page1">
+      <div className="wedding-profile-page">
 
-  <div className="wedding-profile-page">
-
-    {/* Left Side Image */}
-    <div>
-     <div>
-  {wedding.profile_image ? (
-    <img
-      src={wedding.profile_image}
-      alt="Wedding"
-      className="wedding-image1"
-    />
-  ) : (
-    <img
-      src="https://picsum.photos/400/500"
-      alt="No image"
-      className="wedding-image1"
-    />
-  )}
-</div>
-
-    </div>
-
-    {/* Right Side Content */}
-    <div className="wedding-body">
-
-      <h2 className="wedding-title1">
-        {wedding.firstname} & {wedding.partner_firstname}
-      </h2>
-
-      <div className="row">
-
-        <div className="col-md-6">
-          <div className="detail-box">
-            <strong>Role</strong>
-            {wedding.role}
-          </div>
-
-          <div className="detail-box">
-            <strong>Email</strong>
-            {wedding.email}
-          </div>
-
-          <div className="detail-box">
-            <strong>Phone Number</strong>
-            {wedding.phone}
-          </div>
-
-          <div className="detail-box">
-  <strong>Manager Contact - Please Contact</strong>
-  {wedding.manager_phone || "Not Added"}
-</div>
-          
+        {/* Left Side Image */}
+        <div>
+          {wedding.profile_image ? (
+            <img
+              src={wedding.profile_image}
+              alt="Wedding"
+              className="wedding-image1"
+            />
+          ) : (
+            <img
+              src="https://picsum.photos/400/500"
+              alt="No Image"
+              className="wedding-image1"
+            />
+          )}
         </div>
 
-        <div className="col-md-6">
+        {/* Right Side */}
+        <div className="wedding-body">
+
+          <h2 className="wedding-title1">
+            {wedding.firstname} & {wedding.partner_firstname}
+          </h2>
+
+          {/* Free Details */}
           <div className="detail-box">
             <strong>Wedding Date</strong>
-            {wedding.wedding_date || "Not Added"}
-          </div>
-
-          <div className="detail-box">
-            <strong>Venue</strong>
-            {wedding.custom_venue || "Not Added"}
+            <p>{wedding.wedding_date || "Not Added"}</p>
           </div>
 
           <div className="detail-box">
             <strong>Food Type</strong>
-            {wedding.food_type || "Not Added"}
+            <p>{wedding.food_type || "Not Added"}</p>
           </div>
 
           <div className="detail-box">
             <strong>Language</strong>
-            {wedding.language || "Not Added"}
+            <p>{wedding.language || "Not Added"}</p>
           </div>
 
-          
-{wedding.latitude && wedding.longitude && (
-  <div className="mt-3" style={{paddingTop:"30px"}}>
-    <a
-      href={`https://www.google.com/maps?q=${wedding.latitude},${wedding.longitude}`}
-      target="_blank"
-      rel="noreferrer"
-      className="btn btn-dark me-2"
-    >
-      Get Directions
-    </a>
-  </div>
-)}
+          <div className="description-box">
+            <h4>Wedding Story</h4>
+            <p>{wedding.description || "No Description Added"}</p>
+          </div>
 
+          {/* Premium Card */}
+          <div className="premium-lock-card">
 
-        </div>
+            <h3>🔒 Premium Wedding Details</h3>
 
-      </div>
+            <p>
+              Unlock complete wedding information with a one-time payment.
+            </p>
 
-      <div className="description-box">
-        <h4>Wedding Story</h4>
-        <div>{wedding.description || "No Description Added"}</div>
-      </div>
+            <ul className="premium-list">
+              <li>✔ Wedding Venue</li>
+              <li>✔ Contact Number</li>
+              <li>✔ Email Address</li>
+              <li>✔ Full Address</li>
+              <li>✔ Google Map Location</li>
+              <li>✔ Download Invitation Card</li>
+            </ul>
 
-      {wedding.youtubeLink && (
-        <div className="mt-4">
-          <a
-            href={wedding.youtube_link}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-danger"
-          >
-            Watch Wedding Video
-          </a>
-        </div>
-      )}
+            <h2 className="premium-price">
+              ₹999
+            </h2>
 
-      <button
-        className="btn btn-dark back-btn"
-        onClick={() => navigate(-1)}
-      >
-        Back
-      </button>
+            <div className="premium-btn-group">
 
-    </div>
+  <button
+    className="btn btn-dark back-btn"
+    onClick={() => navigate(-1)}
+  >
+    Back
+  </button>
+ <span style={{ marginLeft: "40px" }}>
+   <button
+  className="btn btn-dark unlock-btn"
+  onClick={handleUnlockPayment}
+>
+  🔓 Unlock Now
+</button>
+ </span>
 
-  </div>
 
 </div>
+
+<div className="premium-note">
+  One-time payment. Once purchased, you can access these details anytime.
+</div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
   );
 };
+
 
 export default WeddingDetails;

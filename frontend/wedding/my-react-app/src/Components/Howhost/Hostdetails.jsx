@@ -1,4 +1,5 @@
   import React, { useState, useEffect } from "react";
+  import axios from "axios";
   import { useNavigate } from "react-router-dom";
   import "../../assets/Style/Hostdetails.css";
   import wed7 from "../../assets/Images/banimgjpj.jpeg";
@@ -21,6 +22,7 @@ const [latitude, setLatitude] = useState("");
 const [longitude, setLongitude] = useState("");
 const [venues, setVenues] = useState([]);
 const [loading, setLoading] = useState(true);
+const [submitting, setSubmitting] = useState(false);
 
 const foodOptions = [
   "Vegetarian",
@@ -157,7 +159,7 @@ useEffect(() => {
 
 
   // form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -218,22 +220,107 @@ useEffect(() => {
     sessionStorage.getItem("hostStep1")
   );
 
-  const finalWedding = {
-    ...step1Data,
-    ...weddingData,
-  };
 
-  sessionStorage.setItem(
-    "finalWedding",
-    JSON.stringify(finalWedding)
+  const token = localStorage.getItem("token");
+
+const weddingPayload = new FormData();
+
+weddingPayload.append("role", step1Data.role);
+weddingPayload.append("firstname", step1Data.firstname);
+weddingPayload.append("lastname", step1Data.lastname);
+weddingPayload.append("partner_firstname", step1Data.partnerFirstname);
+weddingPayload.append("partner_lastname", step1Data.partnerLastname);
+weddingPayload.append("email", step1Data.email);
+weddingPayload.append("phone", step1Data.phonenumber);
+
+weddingPayload.append("wedding_date", weddingDate);
+weddingPayload.append("wedding_time", weddingTime);
+
+weddingPayload.append(
+  "custom_venue",
+  venue === "other"
+    ? customVenue
+    : selectedVenue?.name || ""
+);
+
+weddingPayload.append(
+  "venue",
+  selectedVenue?.id || ""
+);
+
+weddingPayload.append(
+  "venue_price",
+  selectedVenue?.price || 0
+);
+
+weddingPayload.append("food_type", foodType);
+weddingPayload.append("alcohol_served", alcoholServed);
+weddingPayload.append("language", language);
+weddingPayload.append("dress_code", dressCode);
+weddingPayload.append("description", description);
+weddingPayload.append("manager_phone", managerPhone);
+weddingPayload.append("latitude", latitude);
+weddingPayload.append("longitude", longitude);
+
+weddingPayload.append(
+  "payment_status",
+  "Pending"
+);
+
+
+console.log("Selected Image:", window.selectedProfileImage);
+
+if (window.selectedProfileImage) {
+  console.log("Image Name:", window.selectedProfileImage.name);
+  console.log("Image Size:", window.selectedProfileImage.size);
+} else {
+  console.log("No image found");
+}
+
+// Profile image
+if (window.selectedProfileImage) {
+  weddingPayload.append(
+    "profile_image",
+    window.selectedProfileImage
+  );
+}
+
+try {
+
+  setSubmitting(true);
+
+  await axios.post(
+    `${API_URL}/api/weddings/`,
+    weddingPayload,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 
-  console.log(
-    "Final Wedding Data:",
-    finalWedding
-  );
+  sessionStorage.removeItem("hostDetails");
+  sessionStorage.removeItem("hostStep1");
 
-  navigate("/payment");
+ alert(
+  "🎉 Wedding submitted successfully!\n\nYour wedding will be reviewed by our admin and published after approval."
+);
+
+  navigate("/");
+
+} catch (error) {
+
+  console.log(error.response?.data);
+
+  alert("Failed to submit wedding.");
+
+} finally {
+
+  setSubmitting(false);
+
+}
+
 
     };
 
@@ -519,9 +606,15 @@ useEffect(() => {
                 Back
               </button>
 
-              <button type="submit" className="btn btn-dark">
-                Continue to Payment
-              </button>
+             <button
+  type="submit"
+  className="btn btn-dark"
+  disabled={submitting}
+>
+  {submitting
+    ? "Submitting..."
+    : "Submit Wedding"}
+</button>
             </div>
                 </form>
         </div>

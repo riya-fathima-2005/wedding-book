@@ -106,17 +106,19 @@ const Recentwed = () => {
                     />
                   )}
 
-                  <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
+                 <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
 
-                    <h5 className="card-title">
-                      {wedding.firstname} & {wedding.partner_firstname}
-                    </h5>
+  <h5 className="card-title">
+  {wedding.firstname} & {wedding.partner_firstname}
+</h5>
 
-                    <p className="card-text">
-                      Wedding Profile
-                    </p>
+<div className="mt-2">
+  📅 {wedding.wedding_date}
+</div>
 
-                  </div>
+
+</div>
+
                 </div>
               </div>
             ))}
