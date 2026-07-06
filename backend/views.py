@@ -35,6 +35,7 @@ from django.contrib.auth import ( authenticate, login, logout)
 
 from django.contrib import messages
 from .models import Permission
+import traceback
 
 
 from .models import Payment
@@ -143,6 +144,7 @@ Message:
 
     except Exception as e:
         print("EMAIL ERROR:", str(e))
+        traceback.print_exc()
 
         return Response(
             {"error": str(e)},
