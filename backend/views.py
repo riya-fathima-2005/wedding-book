@@ -1,5 +1,5 @@
 from urllib import request
-from urllib3 import request
+from .models import Payment
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
@@ -1410,23 +1410,42 @@ def payment_list(request):
 
 @csrf_exempt
 def save_payment(request):
+
     if request.method == "POST":
 
         data = json.loads(request.body)
 
+        wedding = Wedding.objects.get(
+            id=data["wedding"]
+        )
+
         Payment.objects.create(
+
+            wedding=wedding,
+
             payer_name=data["payer_name"],
+
             venue_name=data["venue_name"],
+
             amount=data["amount"],
+
             razorpay_order_id=data["razorpay_order_id"],
+
             razorpay_payment_id=data["razorpay_payment_id"],
+
             payment_status="Success"
         )
 
         return JsonResponse({
-            "message": "Payment Saved"
+            "message": "Payment Saved Successfully"
         })
 
+    return JsonResponse(
+        {
+            "error": "Invalid Request"
+        },
+        status=400
+    )
 class WeddingListCreateView(generics.ListCreateAPIView):
     queryset = Wedding.objects.all()
     serializer_class = WeddingSerializer
@@ -1437,9 +1456,34 @@ class WeddingListCreateView(generics.ListCreateAPIView):
             serializer.save(user=self.request.user)
         else:
             serializer.save()
+
+
+class WeddingDetailView(generics.RetrieveAPIView):
+    queryset = Wedding.objects.all()
+    serializer_class = WeddingSerializer
+    permission_classes = [AllowAny]            
     
 
 
+
+def has_paid(request, wedding_id):
+
+    username = request.GET.get("username")
+
+    if not username:
+        return JsonResponse({
+            "paid": False
+        })
+
+    payment = Payment.objects.filter(
+        payer_name=username,
+        wedding_id=wedding_id,
+        payment_status="Success"
+    ).exists()
+
+    return JsonResponse({
+        "paid": payment
+    })
 
 
     # =================Venue Map=================

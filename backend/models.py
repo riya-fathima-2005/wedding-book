@@ -250,21 +250,28 @@ class Permission(models.Model):
     def __str__(self):
             return self.group_name
 
-
 class Payment(models.Model):
-    booking = models.ForeignKey(
-    Booking,
-    on_delete=models.CASCADE,
-    null=True,
-    blank=True
-)
 
-    user = models.ForeignKey(
-    User,
+    booking = models.ForeignKey(
+        Booking,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
+    wedding = models.ForeignKey(
+    "Wedding",
     on_delete=models.CASCADE,
     null=True,
     blank=True
 )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
     payer_name = models.CharField(max_length=100)
 
     venue_name = models.CharField(max_length=200)
@@ -298,6 +305,7 @@ class Payment(models.Model):
         return self.razorpay_payment_id
 
 
+
 class Wedding(models.Model):
 
     user = models.ForeignKey(
@@ -318,7 +326,6 @@ class Wedding(models.Model):
     email = models.EmailField()
 
     phone = models.CharField(max_length=20)
-
     profile_image = models.ImageField(
     upload_to="weddings/",
     blank=True,

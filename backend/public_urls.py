@@ -25,6 +25,12 @@ urlpatterns = [
 
     path('api/weddings/', WeddingListCreateView.as_view(), name='weddings'),
     path(
+    "api/weddings/<int:pk>/",
+    views.WeddingDetailView.as_view(),
+    name="wedding-detail"
+),
+
+    path(
     "create-payment/",
     views.create_payment,
     name="create_payment"

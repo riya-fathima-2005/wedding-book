@@ -36,6 +36,7 @@ path("add-category/", views.add_category, name="add_category"),
 
 # THIS ONE MISSING
 path('save_permission/<int:group_id>/', views.save_permission, name='save_permission'),
+path("save-payment/", views.save_payment),
 
 # All User Groups
 path('allusergroups/', views.allusergroups, name='allusergroups'),
@@ -43,4 +44,6 @@ path('create-groups/', views.create_groups, name='create_groups'),
 path('add_allusergroups/', views.add_allusergroups, name='add_allusergroups'),
 path('edit_allusergroups/<int:id>/', views.edit_allusergroups, name='edit_allusergroups'),
 path('delete-group/<int:id>/', views.delete_group, name='delete_group'),
+path( "has-paid/<int:wedding_id>/", views.has_paid,name="has_paid"),
+path("create-payment/", views.create_payment),
 ]
