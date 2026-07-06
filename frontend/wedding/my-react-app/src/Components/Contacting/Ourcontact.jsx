@@ -21,34 +21,45 @@ function Ourcontact() {
   };
 
   // HANDLE SUBMIT
+// HANDLE SUBMIT
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-  const response = await fetch(
-  "https://wedding-book.onrender.com/api/contact/",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  }
-);
+    console.log("Sending:", formData);
+
+    const response = await fetch(
+      "https://wedding-book.onrender.com/api/contact/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    console.log("Status:", response.status);
 
     const data = await response.json();
 
-    alert(data.message);
+    console.log("Response:", data);
 
-    setFormData({
-      fullname: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
+    if (response.ok) {
+      alert(data.message);
+
+      setFormData({
+        fullname: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } else {
+      alert(data.error || "Failed to Send Message");
+    }
 
   } catch (error) {
-    console.log(error);
+    console.error("Fetch Error:", error);
     alert("Failed to Send Message");
   }
 };

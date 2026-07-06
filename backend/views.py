@@ -108,15 +108,19 @@ def index(request):
 @api_view(["POST"])
 def contact_test(request):
 
+    print("===== CONTACT API HIT =====")
+    print(request.data)
+
     fullname = request.data.get("fullname")
     email = request.data.get("email")
     phone = request.data.get("phone")
     message = request.data.get("message")
 
+    print(fullname, email, phone)
+
     try:
         send_mail(
-            subject=f"New Contact Message from {fullname}",
-
+            subject=f"Wedding Contact from {fullname}",
             message=f"""
 Name: {fullname}
 Email: {email}
@@ -124,23 +128,26 @@ Phone: {phone}
 
 Message:
 {message}
-            """,
-
+""",
             from_email=settings.EMAIL_HOST_USER,
-
-            recipient_list=["yourgmail@gmail.com"],   # where you receive mail
-
+            recipient_list=[settings.EMAIL_HOST_USER],
             fail_silently=False,
         )
 
-        return Response({
-            "message": "Message sent successfully"
-        })
+        print("EMAIL SENT SUCCESSFULLY")
+
+        return Response(
+            {"message": "Message Sent Successfully"},
+            status=status.HTTP_200_OK,
+        )
 
     except Exception as e:
-        return Response({
-            "message": str(e)
-        }, status=500)
+        print("EMAIL ERROR:", str(e))
+
+        return Response(
+            {"error": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
     # ================= AUTHENTICATION =================
 
 
