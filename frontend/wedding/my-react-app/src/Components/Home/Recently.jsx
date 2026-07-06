@@ -47,40 +47,34 @@ const Recentwed = () => {
           <div className="row justify-content-center">
 
             {allWeddings.slice(0, 3).map((wedding, index) => (
-              <div
-                className="col-md-4 d-flex justify-content-center mb-4"
-                key={index}
-              >
-                <div
-                  className="card card-overlay text-center border-0 card-service no-focus-border"
-                  onClick={() =>
-                    navigate("/wedding-details", {
-                      state: wedding,
-                    })
-                  }
-                >
+             <div
+  className="col-md-4 d-flex justify-content-center mb-4"
+  key={wedding.id}
+>
+  <div
+    className="card card-overlay text-center border-0 card-service no-focus-border"
+    onClick={() => navigate(`/wedding-details/${wedding.id}`)}
+  >
+    <img
+      src={wedding.profile_image}
+      alt="Wedding"
+      className="card-img"
+    />
 
-                  <img
-                    src={wedding.profile_image}
-                    alt="Wedding"
-                    className="card-img"
-                  />
+    <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
 
-                  <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
+      <h5 className="card-title">
+        {wedding.firstname} & {wedding.partner_firstname}
+      </h5>
 
-                    <h5 className="card-title">
-                      {wedding.firstname} &{" "}
-                      {wedding.partner_firstname}
-                    </h5>
+      <p className="card-text">
+        Wedding Profile
+      </p>
 
-                    <p className="card-text">
-                      Wedding Profile
-                    </p>
+    </div>
 
-                  </div>
-
-                </div>
-              </div>
+  </div>
+</div>
             ))}
 
           </div>

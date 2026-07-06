@@ -91,7 +91,8 @@ const isNotFound =
   !isAdminRoute &&
   !validRoutes.includes(location.pathname) &&
   !location.pathname.startsWith("/morevenue/") &&
-  !location.pathname.startsWith("/blogs/");
+  !location.pathname.startsWith("/blogs/") &&
+  !location.pathname.startsWith("/wedding-details/");
 
   const hideLayout =
     location.pathname === "/login" ||
@@ -122,7 +123,7 @@ const isNotFound =
         <Route path="/howhost" element={<Howtohost />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-success" element={<Success />} />
-        <Route path="/wedding-details" element={<WeddingDetails />} />
+        <Route path="/wedding-details/:id" element={<WeddingDetails />} />
         
 
         {/* AUTH */}

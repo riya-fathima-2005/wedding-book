@@ -1,15 +1,76 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/Style/WeddingDetails.css";
 
 const WeddingDetails = () => {
-  const location = useLocation();
+
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const wedding = location.state;
-
+  const [wedding, setWedding] = useState(null);
   const [unlocked, setUnlocked] = useState(false);
+
+  useEffect(() => {
+
+    const fetchWedding = async () => {
+
+      try {
+        console.log("Route ID:", id);
+
+        const response = await axios.get(
+          `https://wedding-book.onrender.com/api/weddings/${id}/`
+        );
+
+        setWedding(response.data);
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+
+    };
+
+    fetchWedding();
+
+  }, [id]);
+
+  useEffect(() => {
+
+    if (!wedding) return;
+
+    const checkPayment = async () => {
+
+      try {
+
+        const username =
+          JSON.parse(localStorage.getItem("user"))?.username;
+
+        if (!username) return;
+
+        const response = await axios.get(
+          `https://wedding-book.onrender.com/has-paid/${wedding.id}/`,
+          {
+            params: {
+              username,
+            },
+          }
+        );
+
+        if (response.data.paid) {
+          setUnlocked(true);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+
+    };
+
+    checkPayment();
+
+  }, [wedding]);
 
   const handleUnlockPayment = async () => {
     try {
@@ -22,54 +83,53 @@ const WeddingDetails = () => {
 
       const order = paymentResponse.data;
 
-      const options = {
-        key: "rzp_test_SyG00JPy3MbhJq",
-        amount: order.amount,
-        currency: order.currency,
-        order_id: order.id,
+     const options = {
+  key: "rzp_test_SyG00JPy3MbhJq",
+  amount: order.amount,
+  currency: order.currency,
+  order_id: order.id,
 
-        name: "Wedding Book",
-        description: "Unlock Premium Wedding Details",
+  name: "Wedding Book",
+  description: "Unlock Premium Wedding Details",
 
-        handler: async function (response) {
-          try {
-            await axios.post(
-              "https://wedding-book.onrender.com/save-payment/",
-              {
-                payer_name:
-                  JSON.parse(localStorage.getItem("user"))?.username ||
-                  "Guest",
+  handler: async function (response) {
+    try {
+      await axios.post(
+        "https://wedding-book.onrender.com/save-payment/",
+        {
+          payer_name:
+            JSON.parse(localStorage.getItem("user"))?.username || "Guest",
 
-                venue_name: `${wedding.firstname} & ${wedding.partner_firstname}`,
+          venue_name: `${wedding.firstname} & ${wedding.partner_firstname}`,
 
-                amount: 999,
+          wedding: wedding.id,
 
-                razorpay_order_id: order.id,
+          amount: 999,
 
-                razorpay_payment_id:
-                  response.razorpay_payment_id,
-              }
-            );
+          razorpay_order_id: order.id,
 
-            alert("🎉 Payment Successful!");
+          razorpay_payment_id: response.razorpay_payment_id,
+        }
+      );
 
-            setUnlocked(true);
+      alert("🎉 Payment Successful!");
 
-          } catch (error) {
-            console.log(error);
+      setUnlocked(true);
 
-            alert("Payment save failed");
-          }
-        },
+    } catch (error) {
+      console.log(error);
+      alert("Payment save failed");
+    }
+  },
 
-        theme: {
-          color: "#000000",
-        },
-      };
+  theme: {
+    color: "#000000",
+  },
+};
 
-      const razorpay = new window.Razorpay(options);
+const razorpay = new window.Razorpay(options);
 
-      razorpay.open();
+razorpay.open();
 
     } catch (error) {
       console.log(error);
@@ -237,9 +297,9 @@ const WeddingDetails = () => {
     target="_blank"
     rel="noreferrer"
     download
-    className="btn btn-success mt-3"
+    className="btn btn-dark mt-3"
   >
-    ⬇ Download Invitation
+    Download Invitation
   </a>
 )}
             </div>

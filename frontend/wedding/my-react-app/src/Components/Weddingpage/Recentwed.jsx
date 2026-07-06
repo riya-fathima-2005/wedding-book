@@ -71,56 +71,55 @@ const Recentwed = () => {
           <div className="row justify-content-center">
 
             {filteredWeddings.map((wedding) => (
-              <div
-                className="col-md-4 d-flex justify-content-center mb-4"
-                key={wedding.id}
-              >
-                <div
-                  className="card card-overlay text-center border-0 card-service no-focus-border"
-                  onClick={() =>
-                    navigate("/wedding-details", {
-                      state: wedding,
-                    })
-                  }
-                >
+             <div
+  className="col-md-4 d-flex justify-content-center mb-4"
+  key={wedding.id}
+>
+  <div
+    className="card card-overlay text-center border-0 card-service no-focus-border"
+    onClick={() => {
+    alert(`ID = ${wedding.id}`);
+    navigate(`/wedding-details/${wedding.id}`);
+}}
+  >
 
-                  {wedding.profile_image ? (
-                    <img
-                      src={wedding.profile_image}
-                      alt="Wedding"
-                      style={{
-                        width: "100%",
-                        height: "450px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src="https://picsum.photos/400/500"
-                      alt="No Image"
-                      style={{
-                        width: "100%",
-                        height: "450px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
+    {wedding.profile_image ? (
+      <img
+        src={wedding.profile_image}
+        alt="Wedding"
+        style={{
+          width: "100%",
+          height: "450px",
+          objectFit: "cover",
+        }}
+      />
+    ) : (
+      <img
+        src="https://picsum.photos/400/500"
+        alt="No Image"
+        style={{
+          width: "100%",
+          height: "450px",
+          objectFit: "cover",
+        }}
+      />
+    )}
 
-                 <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
+    <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
 
-  <h5 className="card-title">
-  {wedding.firstname} & {wedding.partner_firstname}
-</h5>
+      <h5 className="card-title">
+        {wedding.firstname} & {wedding.partner_firstname}
+      </h5>
 
-<div className="mt-2">
-  📅 {wedding.wedding_date}
+      <div className="mt-2">
+        📅 {wedding.wedding_date}
+      </div>
+
+    </div>
+
+  </div>
 </div>
-
-
-</div>
-
-                </div>
-              </div>
+              
             ))}
 
           </div>
