@@ -40,7 +40,7 @@ const Subblogss = () => {
 
         <div className="banner-wrapper bannerblog">
 
-          <div className="banner-box">
+          <div className="banner-box1">
 
             <img
               src={wed7}

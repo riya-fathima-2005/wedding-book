@@ -1,4 +1,12 @@
-
+ .banner-box1 {
+    position: relative;
+    width: 2590px;
+    height: 380px;
+    border-radius: 25px;
+    overflow: hidden;
+    padding-right:-100px;
+    margin-top: -15px;
+  }
 
 
 .dynamic-blog-title{
