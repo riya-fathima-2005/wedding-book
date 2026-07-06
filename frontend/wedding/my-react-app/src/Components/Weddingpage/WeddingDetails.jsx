@@ -37,33 +37,33 @@ const WeddingDetails = () => {
 
     if (!wedding) return;
 
-    const checkPayment = async () => {
+const checkPayment = async () => {
+  try {
+    const username = JSON.parse(localStorage.getItem("user"))?.username;
 
-      try {
+    console.log("Username:", username);
+    console.log("Wedding ID:", wedding.id);
 
-        const username =
-          JSON.parse(localStorage.getItem("user"))?.username;
-
-        if (!username) return;
-
-        const response = await axios.get(
-          `https://wedding-book.onrender.com/has-paid/${wedding.id}/`,
-          {
-            params: {
-              username,
-            },
-          }
-        );
-
-        if (response.data.paid) {
-          setUnlocked(true);
-        }
-
-      } catch (error) {
-        console.log(error);
+    const response = await axios.get(
+      `https://wedding-book.onrender.com/has-paid/${wedding.id}/`,
+      {
+        params: { username },
       }
+    );
 
-    };
+    console.log("Has Paid Response:", response.data);
+
+    if (response.data.paid) {
+      console.log("Unlocking...");
+      setUnlocked(true);
+    } else {
+      console.log("Still locked");
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
     checkPayment();
 
@@ -143,56 +143,92 @@ razorpay.open();
     );
   }
 
+
+
+
   return (
     <div className="wedding-details-page1">
 
       <div className="wedding-profile-page">
 
-        {/* Left Side */}
-        <div>
-          {wedding.profile_image ? (
-            <img
-              src={wedding.profile_image}
-              alt="Wedding"
-              className="wedding-image1"
-            />
-          ) : (
-            <img
-              src="https://picsum.photos/400/500"
-              alt="No Image"
-              className="wedding-image1"
-            />
-          )}
-        </div>
+      {/* Left Side */}
+
+<div className="wedding-left-panel">
+
+  {wedding.profile_image ? (
+    <img
+      src={wedding.profile_image}
+      alt="Wedding"
+      className="wedding-image1"
+    />
+  ) : (
+    <img
+      src="https://picsum.photos/400/500"
+      alt="No Image"
+      className="wedding-image1"
+    />
+  )}
+
+  <div className="couple-card">
+
+    <h3>
+      {wedding.firstname} & {wedding.partner_firstname}
+    </h3>
+
+    <p>{wedding.wedding_date}</p>
+
+  </div>
+
+</div>
 
         {/* Right Side */}
         <div className="wedding-body">
 
-          <h2 className="wedding-title1">
-            {wedding.firstname} & {wedding.partner_firstname}
-          </h2>
+         <div className="title-section">
 
+  <p className="title-tag">
+    WEDDING EXPERIENCE
+  </p>
+
+  <h1 className="wedding-title1">
+    {wedding.firstname}
+    <span className="ampersand"> & </span>
+    {wedding.partner_firstname}
+  </h1>
+
+  <div className="title-divider"></div>
+
+</div>
           {/* FREE DETAILS */}
 
-          <div className="detail-box">
-            <strong>Wedding Date</strong>
-            <p>{wedding.wedding_date || "Not Added"}</p>
-          </div>
+         <div className="detail-grid">
 
-          <div className="detail-box">
-            <strong>Food Type</strong>
-            <p>{wedding.food_type || "Not Added"}</p>
-          </div>
+  <div className="detail-box">
+    <strong>Wedding Date</strong>
+    <p>{wedding.wedding_date || "Not Added"}</p>
+  </div>
 
-          <div className="detail-box">
-            <strong>Language</strong>
-            <p>{wedding.language || "Not Added"}</p>
-          </div>
+  <div className="detail-box">
+    <strong>Food Type</strong>
+    <p>{wedding.food_type || "Not Added"}</p>
+  </div>
 
-          <div className="description-box">
-            <h4>Wedding Story</h4>
-            <p>{wedding.description || "No Description Added"}</p>
-          </div>
+  <div className="detail-box">
+    <strong>Language</strong>
+    <p>{wedding.language || "Not Added"}</p>
+  </div>
+
+</div>
+
+        <div className="story-card">
+
+  <h3>Wedding Story</h3>
+
+  <p>
+    {wedding.description || "No Description Added"}
+  </p>
+
+</div>
 
           {/* PREMIUM SECTION */}
 
@@ -247,7 +283,7 @@ razorpay.open();
 
             <div className="premium-lock-card">
 
-              <h3>🎉 Premium Details Unlocked</h3>
+              <h2> Premium Details Unlocked</h2>
 
               <div className="detail-box">
                 <strong>Bride & Groom</strong>

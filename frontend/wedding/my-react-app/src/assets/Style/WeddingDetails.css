@@ -1,4 +1,4 @@
-.wedding-details-page1{
+/* .wedding-details-page1{
     background:#f5f5f5;
     min-height:100vh;
     padding:80px 60px;
@@ -96,4 +96,444 @@
     .wedding-details-page1 {
         padding: 30px 15px;
     }
+} */
+
+
+/* =========================================
+   WEDDING DETAILS PAGE
+========================================= */
+
+.wedding-details-page1{
+    width:100%;
+    min-height:100vh;
+    background:#f7f7f7;
+    padding:80px 70px;
+    margin-top:70px;
+}
+
+.wedding-profile-page{
+    display:flex;
+    gap:60px;
+    align-items:flex-start;
+}
+
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.wedding-left-panel{
+    width:430px;
+    position:sticky;
+    top:120px;
+}
+
+
+/* IMAGE */
+
+.wedding-image1{
+    width:100%;
+    height:650px;
+    object-fit:cover;
+    border-radius:28px;
+    transition:.5s ease;
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.wedding-image1:hover{
+    transform:scale(1.02);
+}
+
+
+/* =========================================
+   COUPLE CARD
+========================================= */
+
+.couple-card{
+
+    background:#fff;
+
+    margin-top:25px;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+.couple-card h3{
+
+    font-size:38px;
+
+    font-weight:300;
+
+    color:#111;
+
+    line-height:1.4;
+
+    margin-bottom:12px;
+
+    letter-spacing:.5px;
+
+}
+
+.couple-card p{
+
+    color:#777;
+
+    font-size:15px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.wedding-body{
+
+    flex:1;
+
+    background:#fff;
+
+    border-radius:30px;
+
+    padding:55px;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.08);
+
+}
+
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.title-section{
+
+    margin-bottom:45px;
+
+}
+
+.title-tag{
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:5px;
+
+    color:#777;
+
+    margin-bottom:18px;
+
+}
+
+.wedding-title1{
+
+    font-size:55px;
+
+    font-weight:300;
+
+    color:#111;
+
+    line-height:1.25;
+
+    margin-bottom:22px;
+
+}
+
+.ampersand{
+
+    font-weight:200;
+
+    margin:0 12px;
+
+}
+
+.title-divider{
+
+    width:80px;
+
+    height:2px;
+
+    background:#111;
+
+}
+
+
+/* =========================================
+   DETAIL GRID
+========================================= */
+
+.detail-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-bottom:40px;
+
+}
+
+.detail-box{
+
+    background:#fafafa;
+
+    border:1px solid #ececec;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    transition:.35s;
+
+}
+
+.detail-box:hover{
+
+    background:#fff;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.08);
+
+}
+
+.detail-box strong{
+
+    display:block;
+
+    color:#777;
+
+    text-transform:uppercase;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+
+}
+
+.detail-box p{
+
+    margin:0;
+
+    font-size:20px;
+
+    color:#111;
+
+    font-weight:500;
+
+}
+
+
+
+/* =========================================
+   WEDDING STORY
+========================================= */
+
+.story-card{
+
+    margin-top:10px;
+
+    margin-bottom:45px;
+
+    padding:35px;
+
+    border-radius:24px;
+
+    background:#fcfcfc;
+
+    border:1px solid #ececec;
+
+}
+
+.story-card h3{
+
+    font-size:28px;
+
+    font-weight:400;
+
+    color:#111;
+
+    margin-bottom:18px;
+
+}
+
+.story-card p{
+
+    line-height:2;
+
+    color:#555;
+
+    font-size:16px;
+
+}
+
+
+
+/* =========================================
+   PREMIUM SECTION
+========================================= */
+
+.premium-lock-card{
+
+    margin-top:40px;
+
+    background:#111;
+
+    color:#fff;
+
+    border-radius:28px;
+
+    padding:45px;
+
+}
+
+.premium-lock-card h3{
+
+    font-size:34px;
+
+    font-weight:300;
+
+    margin-bottom:20px;
+
+}
+
+.premium-lock-card p{
+
+    color:#d8d8d8;
+
+    line-height:1.8;
+
+}
+
+
+
+/* =========================================
+   PREMIUM LIST
+========================================= */
+
+.premium-list{
+
+    margin-top:30px;
+
+    margin-bottom:35px;
+
+    padding-left:0;
+
+    list-style:none;
+
+}
+
+.premium-list li{
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    font-size:17px;
+
+}
+
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.premium-price{
+
+    font-size:55px;
+
+    font-weight:300;
+
+    margin:30px 0;
+
+    color:#fff;
+
+}
+
+
+
+/* =========================================
+   PREMIUM NOTE
+========================================= */
+
+.premium-note{
+
+    margin-top:30px;
+
+    color:#aaa;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+
+
+/* =========================================
+   PREMIUM UNLOCKED
+========================================= */
+
+.premium-lock-card .detail-box{
+
+    background:#1b1b1b;
+
+    border:1px solid #2b2b2b;
+
+    margin-bottom:18px;
+
+}
+
+.premium-lock-card .detail-box strong{
+
+    color:#bdbdbd;
+
+}
+
+.premium-lock-card .detail-box p{
+
+    color:#fff;
+
+}
+
+.wedding-left-panel{
+    width:420px;
+}
+
+.couple-card{
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+.couple-card h3{
+    font-size:32px;
+    font-weight:300;
+    margin-bottom:10px;
+}
+
+.couple-card p{
+    color:#666;
+    margin:0;
 }
