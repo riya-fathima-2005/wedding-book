@@ -4,36 +4,33 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/Style/WeddingDetails.css";
 
 const WeddingDetails = () => {
-
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [wedding, setWedding] = useState(null);
   const [unlocked, setUnlocked] = useState(false);
 
+  console.log("Route ID:", id);
+
   useEffect(() => {
-
     const fetchWedding = async () => {
-
       try {
-        console.log("Route ID:", id);
+        console.log("Fetching:", `https://wedding-book.onrender.com/api/weddings/${id}/`);
 
         const response = await axios.get(
           `https://wedding-book.onrender.com/api/weddings/${id}/`
         );
 
+        console.log("Wedding Response:", response.data);
+
         setWedding(response.data);
 
       } catch (error) {
-
-        console.log(error);
-
+        console.log("API Error:", error.response);
       }
-
     };
 
     fetchWedding();
-
   }, [id]);
 
   useEffect(() => {

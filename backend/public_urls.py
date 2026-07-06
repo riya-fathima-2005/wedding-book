@@ -41,7 +41,11 @@ path(
     views.save_payment,
     name="save_payment"
 ),
-
+path(
+    "has-paid/<int:wedding_id>/",
+    views.has_paid,
+    name="has_paid"
+),
     path("api/blogs/", views.blog_api, name="blog_api"),
     path("api/blogs/<slug:slug>/", views.single_blog_api, name="single_blog_api"),
 ]
