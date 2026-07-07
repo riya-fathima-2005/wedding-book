@@ -9,7 +9,7 @@ const DynamicPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/pages/${slug}/`)
+      axios.get("https://wedding-book.onrender.com/api/pages/")
       .then((response) => {
         setPage(response.data);
       })

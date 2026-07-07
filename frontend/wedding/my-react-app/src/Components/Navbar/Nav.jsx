@@ -53,7 +53,7 @@ const Nav = () => {
 
   useEffect(() => {
   axios
-    .get("http://127.0.0.1:8000/api/pages/")
+    axios.get("https://wedding-book.onrender.com/api/pages/")
     .then((response) => {
       setPages(response.data);
       console.log(response.data);
