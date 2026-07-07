@@ -1,5 +1,7 @@
 from django import forms
 from .models import Blog
+from django_ckeditor_5.widgets import CKEditor5Widget
+from .models import Page
 
 class BlogForm(forms.ModelForm):
     class Meta:
@@ -16,3 +18,19 @@ class BlogForm(forms.ModelForm):
             'meta_keywords',
             'is_published'
         ]
+
+
+    
+
+
+class PageForm(forms.ModelForm):
+
+    content = forms.CharField(
+        widget=CKEditor5Widget(
+            config_name="extends"
+        )
+    )
+
+    class Meta:
+        model = Page
+        fields = "__all__"

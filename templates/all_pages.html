@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-wrapper">
+
+    <div class="page-header">
+
+        <div>
+            <h2>All Pages</h2>
+            <p>Manage all website pages</p>
+        </div>
+
+        <a href="{% url 'add_page' %}" class="btn-add-page">
+            <i class="bi bi-plus-circle"></i>
+            Add New Page
+        </a>
+
+    </div>
+
+    <div class="page-table-card">
+
+        <table class="page-table">
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Page Name</th>
+                    <th>Title</th>
+                    <th>Position</th>
+                    <th>Navbar</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Updated</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for page in pages %}
+
+                <tr>
+
+                    <td>{{ forloop.counter }}</td>
+
+                    <td>{{ page.page_name }}</td>
+
+                    <td>{{ page.title }}</td>
+
+                    <td>{{ page.get_position_display }}</td>
+
+                    <td>
+                        {% if page.show_in_navbar %}
+                            <span class="badge success">Yes</span>
+                        {% else %}
+                            <span class="badge danger">No</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if page.status == "published" %}
+                            <span class="badge success">Published</span>
+                        {% else %}
+                            <span class="badge warning">Draft</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ page.nav_priority }}</td>
+
+                    <td>{{ page.updated_at|date:"d M Y" }}</td>
+
+                    <td>
+
+                        <a href="#" class="action-btn edit">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+
+                        <a href="#" class="action-btn delete">
+                            <i class="bi bi-trash"></i>
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="9" class="text-center">
+                        No pages found.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

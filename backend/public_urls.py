@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from .views import ProfileAPIView, ChangePasswordAPIView, WeddingListCreateView
 
+
 urlpatterns = [
 
     path('', views.index, name='index'),
@@ -48,4 +49,20 @@ path(
 ),
     path("api/blogs/", views.blog_api, name="blog_api"),
     path("api/blogs/<slug:slug>/", views.single_blog_api, name="single_blog_api"),
+
+path("pages/", views.pages, name="pages"),
+path("add-page/", views.add_page, name="add_page"),
+path("edit-page/<int:id>/", views.edit_page, name="edit_page"),
+path("delete-page/<int:id>/", views.delete_page, name="delete_page"),
+path(
+    "api/pages/",
+    views.pages_api,
+    name="pages_api"
+),
+path(
+    "api/pages/<slug:slug>/",
+    views.single_page_api,
+    name="single_page_api",
+),
+
 ]

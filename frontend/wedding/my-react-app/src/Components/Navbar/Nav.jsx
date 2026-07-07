@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-
+import axios from "axios";
 import logo from "../../assets/Images/logo.png";
 import "../../assets/Style/Nav.css";
 
@@ -14,6 +14,7 @@ const Nav = () => {
 
   // PROFILE DROPDOWN
   const [showProfile, setShowProfile] = useState(false);
+  const [pages, setPages] = useState([]);
 
   // CHECK LOGIN
   useEffect(() => {
@@ -49,6 +50,19 @@ const Nav = () => {
 
     setUser(null);
   };
+
+  useEffect(() => {
+  axios
+    .get("http://127.0.0.1:8000/api/pages/")
+    .then((response) => {
+      setPages(response.data);
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}, []);
+
 
   return (
     <nav
@@ -146,7 +160,20 @@ const Nav = () => {
                 BECOME A HOST
               </NavLink>
             </li>
+              {pages.map((page) => (
+  <li className="nav-item" key={page.id}>
+    <NavLink
+      to={`/${page.slug}`}
+      className="nav-link"
+    >
+      {page.page_name.toUpperCase()}
+    </NavLink>
+  </li>
+))}
+
           </ul>
+        
+
 
           {/* AUTH SECTION */}
           {!user ? (

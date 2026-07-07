@@ -6,6 +6,8 @@ import uuid
 
 
 
+
+
         # PROFILE MODEL
 
 class Profile(models.Model):
@@ -481,6 +483,99 @@ class Blog(models.Model):
                 unique_slug = f"{base_slug}-{uuid.uuid4().hex[:4]}"
 
             self.slug = unique_slug
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+from django_ckeditor_5.fields import CKEditor5Field
+
+class Page(models.Model):
+
+    POSITION_CHOICES = (
+        ("main", "Main Navigation"),
+        ("footer", "Footer"),
+    )
+
+    ROBOTS_CHOICES = (
+        ("index", "Index"),
+        ("noindex", "No Index"),
+    )
+
+    STATUS_CHOICES = (
+        ("published", "Published"),
+        ("draft", "Draft"),
+    )
+
+    position = models.CharField(
+        max_length=20,
+        choices=POSITION_CHOICES,
+        default="main"
+    )
+
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="children"
+    )
+
+    page_name = models.CharField(max_length=100)
+
+    title = models.CharField(max_length=200)
+
+    slug = models.SlugField(unique=True)
+
+    nav_priority = models.PositiveIntegerField(default=0)
+
+    show_in_navbar = models.BooleanField(default=True)
+
+    content = CKEditor5Field(
+        "Content",
+        config_name="extends"
+    )
+
+    # SEO
+
+    meta_title = models.CharField(max_length=200, blank=True)
+
+    meta_description = models.TextField(blank=True)
+
+    meta_keywords = models.CharField(max_length=300, blank=True)
+
+    canonical_url = models.URLField(blank=True)
+
+    og_image = models.ImageField(
+        upload_to="pages/",
+        blank=True,
+        null=True
+    )
+
+    robots = models.CharField(
+        max_length=20,
+        choices=ROBOTS_CHOICES,
+        default="index"
+    )
+
+    # Settings
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="published"
+    )
+
+    show_in_footer = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.page_name)
 
         super().save(*args, **kwargs)
 

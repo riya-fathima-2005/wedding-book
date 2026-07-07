@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venue, Booking, Module, Child, Payment, VenueMap, Blog, BlogCategory
+from .models import Venue, Booking, Module, Child, Payment, VenueMap, Blog, BlogCategory, Page
 
 
 admin.site.register(Booking)
@@ -9,6 +9,7 @@ admin.site.register(Child)
 admin.site.register(Payment)
 admin.site.register(VenueMap)
 admin.site.register(BlogCategory)
+admin.site.register(Page)
 
 
 @admin.register(Blog)

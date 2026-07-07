@@ -1,5 +1,5 @@
 from urllib import request
-from .models import Payment
+from .models import Page, Payment
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
@@ -8,7 +8,7 @@ from .models import VenueMap
 from .serializers import VenueMapSerializer
 from django.db.models import Sum
 from .models import Blog, BlogCategory
-from .forms import BlogForm
+from .forms import BlogForm, PageForm
 
 from .models import BlogCategory
 from django.utils.text import slugify
@@ -1789,4 +1789,95 @@ def add_category(request):
     )
 
     
-# ================= OTHER PAGES =================
+# =================  PAGES =================
+
+def pages(request):
+    pages = Page.objects.all().order_by("nav_priority")
+
+    return render(
+        request,
+        "all_pages.html",
+        {
+            "pages": pages
+        }
+    )
+
+def add_page(request):
+
+    if request.method == "POST":
+
+        form = PageForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("pages")
+
+    else:
+        form = PageForm()
+
+    return render(
+        request,
+        "add_page.html",
+        {
+            "form": form,
+        },
+    )
+
+def edit_page(request, id):
+
+    page = Page.objects.get(id=id)
+
+    return render(
+        request,
+        "edit_page.html",
+        {
+            "page": page,
+        },
+    )
+from django.shortcuts import redirect
+
+def delete_page(request, id):
+
+    Page.objects.get(id=id).delete()
+
+    return redirect("pages")
+
+
+def pages_api(request):
+
+    pages = Page.objects.filter(
+        status="published",
+        show_in_navbar=True
+    ).order_by("nav_priority")
+
+    data = []
+
+    for page in pages:
+
+        data.append({
+            "id": page.id,
+            "page_name": page.page_name,
+            "slug": page.slug,
+        })
+
+    return JsonResponse(data, safe=False)
+
+def single_page_api(request, slug):
+
+    page = get_object_or_404(
+        Page,
+        slug=slug,
+        status="published"
+    )
+
+    data = {
+        "id": page.id,
+        "page_name": page.page_name,
+        "title": page.title,
+        "content": page.content,
+        "meta_title": page.meta_title,
+        "meta_description": page.meta_description,
+        "meta_keywords": page.meta_keywords,
+    }
+
+    return JsonResponse(data)

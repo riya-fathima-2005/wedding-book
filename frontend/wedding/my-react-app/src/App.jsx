@@ -23,6 +23,7 @@ import Howtohost from "./Components/Howhost/Howtohost";
 import Hostdetails from "./Components/Howhost/Hostdetails";
 import VenueNearby from "./Components/Venue/VenueNearby";
 import NotFound from "./Components/NotFound";
+import DynamicPage from "./Components/DynamicPage";
 
 
 // AUTH
@@ -116,14 +117,16 @@ const isNotFound =
         <Route path="/host" element={<Hostsec />} />
         {/* <Route path="/blog" element={<Blogpage />} /> */}
       <Route path="/blog" element={<Blogpage />} />
-<Route path="/blogs/:slug" element={<Subblogss />} />
+      <Route path="/blogs/:slug" element={<Subblogss />} />
         <Route path="/christ" element={<Christians />} />
         <Route path="/contact" element={<Contacted />} />
         <Route path="/hostdetails" element={<Hostdetails />} />
         <Route path="/howhost" element={<Howtohost />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-success" element={<Success />} />
-        <Route path="/wedding-details/:id" element={<WeddingDetails />} />
+        <Route path="/wedding-details/:id" element={<WeddingDetails />} />     
+
+        <Route path="/:slug" element={<DynamicPage />} />
         
 
         {/* AUTH */}
