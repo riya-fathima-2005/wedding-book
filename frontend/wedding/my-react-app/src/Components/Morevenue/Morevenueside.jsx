@@ -95,11 +95,11 @@ const handleReserve = () => {
 
     <div className="split-image-section">
 
-      <img
-        src={`${API_URL}${venue.image}`}
-        alt={venue.name}
-        className="split-image"
-      />
+     <img
+  src={venue.image}
+  alt={venue.name}
+  className="split-image"
+/>
 
     </div>
 

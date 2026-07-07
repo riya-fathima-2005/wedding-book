@@ -1,1 +1,691 @@
-[{"model": "auth.permission", "pk": 1, "fields": {"name": "Can add log entry", "content_type": 1, "codename": "add_logentry"}}, {"model": "auth.permission", "pk": 2, "fields": {"name": "Can change log entry", "content_type": 1, "codename": "change_logentry"}}, {"model": "auth.permission", "pk": 3, "fields": {"name": "Can delete log entry", "content_type": 1, "codename": "delete_logentry"}}, {"model": "auth.permission", "pk": 4, "fields": {"name": "Can view log entry", "content_type": 1, "codename": "view_logentry"}}, {"model": "auth.permission", "pk": 5, "fields": {"name": "Can add permission", "content_type": 3, "codename": "add_permission"}}, {"model": "auth.permission", "pk": 6, "fields": {"name": "Can change permission", "content_type": 3, "codename": "change_permission"}}, {"model": "auth.permission", "pk": 7, "fields": {"name": "Can delete permission", "content_type": 3, "codename": "delete_permission"}}, {"model": "auth.permission", "pk": 8, "fields": {"name": "Can view permission", "content_type": 3, "codename": "view_permission"}}, {"model": "auth.permission", "pk": 9, "fields": {"name": "Can add group", "content_type": 2, "codename": "add_group"}}, {"model": "auth.permission", "pk": 10, "fields": {"name": "Can change group", "content_type": 2, "codename": "change_group"}}, {"model": "auth.permission", "pk": 11, "fields": {"name": "Can delete group", "content_type": 2, "codename": "delete_group"}}, {"model": "auth.permission", "pk": 12, "fields": {"name": "Can view group", "content_type": 2, "codename": "view_group"}}, {"model": "auth.permission", "pk": 13, "fields": {"name": "Can add user", "content_type": 4, "codename": "add_user"}}, {"model": "auth.permission", "pk": 14, "fields": {"name": "Can change user", "content_type": 4, "codename": "change_user"}}, {"model": "auth.permission", "pk": 15, "fields": {"name": "Can delete user", "content_type": 4, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 16, "fields": {"name": "Can view user", "content_type": 4, "codename": "view_user"}}, {"model": "auth.permission", "pk": 17, "fields": {"name": "Can add content type", "content_type": 5, "codename": "add_contenttype"}}, {"model": "auth.permission", "pk": 18, "fields": {"name": "Can change content type", "content_type": 5, "codename": "change_contenttype"}}, {"model": "auth.permission", "pk": 19, "fields": {"name": "Can delete content type", "content_type": 5, "codename": "delete_contenttype"}}, {"model": "auth.permission", "pk": 20, "fields": {"name": "Can view content type", "content_type": 5, "codename": "view_contenttype"}}, {"model": "auth.permission", "pk": 21, "fields": {"name": "Can add session", "content_type": 6, "codename": "add_session"}}, {"model": "auth.permission", "pk": 22, "fields": {"name": "Can change session", "content_type": 6, "codename": "change_session"}}, {"model": "auth.permission", "pk": 23, "fields": {"name": "Can delete session", "content_type": 6, "codename": "delete_session"}}, {"model": "auth.permission", "pk": 24, "fields": {"name": "Can view session", "content_type": 6, "codename": "view_session"}}, {"model": "auth.permission", "pk": 25, "fields": {"name": "Can add user", "content_type": 7, "codename": "add_user"}}, {"model": "auth.permission", "pk": 26, "fields": {"name": "Can change user", "content_type": 7, "codename": "change_user"}}, {"model": "auth.permission", "pk": 27, "fields": {"name": "Can delete user", "content_type": 7, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 28, "fields": {"name": "Can view user", "content_type": 7, "codename": "view_user"}}, {"model": "auth.permission", "pk": 29, "fields": {"name": "Can add venue", "content_type": 8, "codename": "add_venue"}}, {"model": "auth.permission", "pk": 30, "fields": {"name": "Can change venue", "content_type": 8, "codename": "change_venue"}}, {"model": "auth.permission", "pk": 31, "fields": {"name": "Can delete venue", "content_type": 8, "codename": "delete_venue"}}, {"model": "auth.permission", "pk": 32, "fields": {"name": "Can view venue", "content_type": 8, "codename": "view_venue"}}, {"model": "auth.permission", "pk": 33, "fields": {"name": "Can add booking", "content_type": 9, "codename": "add_booking"}}, {"model": "auth.permission", "pk": 34, "fields": {"name": "Can change booking", "content_type": 9, "codename": "change_booking"}}, {"model": "auth.permission", "pk": 35, "fields": {"name": "Can delete booking", "content_type": 9, "codename": "delete_booking"}}, {"model": "auth.permission", "pk": 36, "fields": {"name": "Can view booking", "content_type": 9, "codename": "view_booking"}}, {"model": "auth.permission", "pk": 37, "fields": {"name": "Can add module", "content_type": 11, "codename": "add_module"}}, {"model": "auth.permission", "pk": 38, "fields": {"name": "Can change module", "content_type": 11, "codename": "change_module"}}, {"model": "auth.permission", "pk": 39, "fields": {"name": "Can delete module", "content_type": 11, "codename": "delete_module"}}, {"model": "auth.permission", "pk": 40, "fields": {"name": "Can view module", "content_type": 11, "codename": "view_module"}}, {"model": "auth.permission", "pk": 41, "fields": {"name": "Can add child", "content_type": 10, "codename": "add_child"}}, {"model": "auth.permission", "pk": 42, "fields": {"name": "Can change child", "content_type": 10, "codename": "change_child"}}, {"model": "auth.permission", "pk": 43, "fields": {"name": "Can delete child", "content_type": 10, "codename": "delete_child"}}, {"model": "auth.permission", "pk": 44, "fields": {"name": "Can view child", "content_type": 10, "codename": "view_child"}}, {"model": "auth.permission", "pk": 45, "fields": {"name": "Can add profile", "content_type": 12, "codename": "add_profile"}}, {"model": "auth.permission", "pk": 46, "fields": {"name": "Can change profile", "content_type": 12, "codename": "change_profile"}}, {"model": "auth.permission", "pk": 47, "fields": {"name": "Can delete profile", "content_type": 12, "codename": "delete_profile"}}, {"model": "auth.permission", "pk": 48, "fields": {"name": "Can view profile", "content_type": 12, "codename": "view_profile"}}, {"model": "auth.user", "pk": 5, "fields": {"password": "pbkdf2_sha256$1200000$mtkgPovaD2tIo2bi9c3T4D$L57LnsbG8WrNHJG5Civ3jAzCsUk/LDM15vn5O3pjQw8=", "last_login": null, "is_superuser": false, "username": "Riswan", "first_name": "", "last_name": "", "email": "riswan@gmail.com", "is_staff": false, "is_active": true, "date_joined": "2026-05-21T12:22:31.410", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 6, "fields": {"password": "pbkdf2_sha256$1200000$bkiOhYl4DTlZKgQmFhC5X9$47ETHsXrrtb9QwfAlPchHXkF8LyFpNpRqPYBPYitqtQ=", "last_login": null, "is_superuser": false, "username": "ayshashahna", "first_name": "", "last_name": "", "email": "ayshashahna123@gmail.com", "is_staff": false, "is_active": true, "date_joined": "2026-05-21T12:44:22.961", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 7, "fields": {"password": "pbkdf2_sha256$1200000$0RMQl97U8lgp5spc5slBPF$K4aTstUMHJt1jU7knl2VqYPnfquWcmLR/u2BzWuf5IA=", "last_login": null, "is_superuser": false, "username": "manu", "first_name": "", "last_name": "", "email": "manu123@gmail.com", "is_staff": false, "is_active": true, "date_joined": "2026-05-21T12:45:25.824", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 8, "fields": {"password": "pbkdf2_sha256$1200000$bxSlzGVZDNOJdzlduePfFU$QszunIzcWfpYOUTZMAypvjLXRQJczSfO0upiwra4pNo=", "last_login": null, "is_superuser": false, "username": "irfan", "first_name": "", "last_name": "", "email": "irfan123@gmail.com", "is_staff": false, "is_active": true, "date_joined": "2026-05-21T12:54:58.152", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 9, "fields": {"password": "pbkdf2_sha256$1200000$BE14LnIfbPDmT5TXtYK5iN$IfVU2Lthef5e7ZtQA2JYqSDGo78eGS3USYqaCdSUTRM=", "last_login": null, "is_superuser": false, "username": "levis", "first_name": "", "last_name": "", "email": "levisahammed@gmail.com", "is_staff": false, "is_active": true, "date_joined": "2026-05-21T13:03:23.605", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 10, "fields": {"password": "pbkdf2_sha256$1200000$RXw7eTOGVGCjLUUqoti2A3$pyPS7lKUI8f77diQHjVmz2rOZruQxED38FIXVIoOtc4=", "last_login": null, "is_superuser": false, "username": "theertha", "first_name": "", "last_name": "", "email": "theertha@gmail.com", "is_staff": false, "is_active": true, "date_joined": "2026-05-21T14:27:14.533", "groups": [], "user_permissions": []}}, {"model": "contenttypes.contenttype", "pk": 1, "fields": {"app_label": "admin", "model": "logentry"}}, {"model": "contenttypes.contenttype", "pk": 2, "fields": {"app_label": "auth", "model": "group"}}, {"model": "contenttypes.contenttype", "pk": 3, "fields": {"app_label": "auth", "model": "permission"}}, {"model": "contenttypes.contenttype", "pk": 4, "fields": {"app_label": "auth", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 5, "fields": {"app_label": "contenttypes", "model": "contenttype"}}, {"model": "contenttypes.contenttype", "pk": 6, "fields": {"app_label": "sessions", "model": "session"}}, {"model": "contenttypes.contenttype", "pk": 7, "fields": {"app_label": "backend", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 8, "fields": {"app_label": "backend", "model": "venue"}}, {"model": "contenttypes.contenttype", "pk": 9, "fields": {"app_label": "backend", "model": "booking"}}, {"model": "contenttypes.contenttype", "pk": 10, "fields": {"app_label": "backend", "model": "child"}}, {"model": "contenttypes.contenttype", "pk": 11, "fields": {"app_label": "backend", "model": "module"}}, {"model": "contenttypes.contenttype", "pk": 12, "fields": {"app_label": "backend", "model": "profile"}}, {"model": "sessions.session", "pk": "zg4jzce989a2yhrfqaz4zk07lu2p5kqn", "fields": {"session_data": ".eJxVjEEOwiAQAP-yZ0MKIiw9evcNzbILUjWQlPZk_Ltp0oNeZybzhom2tUxbT8s0C4yg4fTLIvEz1V3Ig-q9KW51Xeao9kQdtqtbk_S6Hu3foFAvMAIalOAlJotkMg5nm4UkO45MiTO6aHXy2dGFtR9YAjoMhrwRp1GCg88XEEM4sw:1wPurn:nQOTH5nzesblqbn7gbcm7Ryuu02woTvCyDaAiyzLHAk", "expire_date": "2026-06-04T09:48:39.102"}}, {"model": "backend.venue", "pk": 4, "fields": {"name": "ENGAGEMENT VENUE", "location": "Golden Lotus Resort", "price": 10000, "image": "venues/beautiful_mGJQQQa.jpg", "description": "Engagement program, A Grand Celebration Of Love", "created_at": "2025-05-17T09:45:00"}}, {"model": "backend.venue", "pk": 5, "fields": {"name": "PALM SHORE VENUE", "location": "Palm Shore Venue", "price": 8000, "image": "venues/floral.jpg", "description": "Palm Shore Venue - This is our special program", "created_at": "2025-05-18T03:49:00"}}, {"model": "backend.venue", "pk": 8, "fields": {"name": "WEDDING VENUE", "location": "Royal palace", "price": 17500, "image": "venues/freepik3_xGmjuFE.jpeg", "description": "Luxury wedding and Royal theme", "created_at": "2025-05-17T03:49:00"}}, {"model": "backend.booking", "pk": 2, "fields": {"customer_name": "Riya Fathima", "customer_email": "riyaf8052@gmail.com", "customer_phone": "9645968989", "venue": 5, "booking_date": "2026-04-11", "guests": 2, "total_amount": 5000, "status": "Confirmed", "created_at": "2026-05-20T12:54:04.988"}}, {"model": "backend.booking", "pk": 3, "fields": {"customer_name": "Aysha", "customer_email": "ayshashahna1234@gmail.com", "customer_phone": "6238445512", "venue": 4, "booking_date": "2027-12-02", "guests": 3, "total_amount": 6600, "status": "Pending", "created_at": "2026-05-20T14:22:47.697"}}, {"model": "backend.booking", "pk": 11, "fields": {"customer_name": "Manu", "customer_email": "manu1234@gmail.com", "customer_phone": "9985782256", "venue": 4, "booking_date": "2026-02-07", "guests": 6, "total_amount": 9000, "status": "Cancelled", "created_at": "2026-05-20T14:28:27.146"}}]
+[
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 3,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 3,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 3,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 3,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 2,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 2,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 2,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 2,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 7,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 7,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 7,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 7,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add venue",
+      "content_type": 8,
+      "codename": "add_venue"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change venue",
+      "content_type": 8,
+      "codename": "change_venue"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete venue",
+      "content_type": 8,
+      "codename": "delete_venue"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view venue",
+      "content_type": 8,
+      "codename": "view_venue"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add booking",
+      "content_type": 9,
+      "codename": "add_booking"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change booking",
+      "content_type": 9,
+      "codename": "change_booking"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete booking",
+      "content_type": 9,
+      "codename": "delete_booking"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view booking",
+      "content_type": 9,
+      "codename": "view_booking"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add module",
+      "content_type": 11,
+      "codename": "add_module"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change module",
+      "content_type": 11,
+      "codename": "change_module"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete module",
+      "content_type": 11,
+      "codename": "delete_module"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view module",
+      "content_type": 11,
+      "codename": "view_module"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add child",
+      "content_type": 10,
+      "codename": "add_child"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change child",
+      "content_type": 10,
+      "codename": "change_child"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete child",
+      "content_type": 10,
+      "codename": "delete_child"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view child",
+      "content_type": 10,
+      "codename": "view_child"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add profile",
+      "content_type": 12,
+      "codename": "add_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change profile",
+      "content_type": 12,
+      "codename": "change_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete profile",
+      "content_type": 12,
+      "codename": "delete_profile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view profile",
+      "content_type": 12,
+      "codename": "view_profile"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$mtkgPovaD2tIo2bi9c3T4D$L57LnsbG8WrNHJG5Civ3jAzCsUk/LDM15vn5O3pjQw8=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Riswan",
+      "first_name": "",
+      "last_name": "",
+      "email": "riswan@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-21T12:22:31.410",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$bkiOhYl4DTlZKgQmFhC5X9$47ETHsXrrtb9QwfAlPchHXkF8LyFpNpRqPYBPYitqtQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "ayshashahna",
+      "first_name": "",
+      "last_name": "",
+      "email": "ayshashahna123@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-21T12:44:22.961",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$0RMQl97U8lgp5spc5slBPF$K4aTstUMHJt1jU7knl2VqYPnfquWcmLR/u2BzWuf5IA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "manu",
+      "first_name": "",
+      "last_name": "",
+      "email": "manu123@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-21T12:45:25.824",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$bxSlzGVZDNOJdzlduePfFU$QszunIzcWfpYOUTZMAypvjLXRQJczSfO0upiwra4pNo=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "irfan",
+      "first_name": "",
+      "last_name": "",
+      "email": "irfan123@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-21T12:54:58.152",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$BE14LnIfbPDmT5TXtYK5iN$IfVU2Lthef5e7ZtQA2JYqSDGo78eGS3USYqaCdSUTRM=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "levis",
+      "first_name": "",
+      "last_name": "",
+      "email": "levisahammed@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-21T13:03:23.605",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$RXw7eTOGVGCjLUUqoti2A3$pyPS7lKUI8f77diQHjVmz2rOZruQxED38FIXVIoOtc4=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "theertha",
+      "first_name": "",
+      "last_name": "",
+      "email": "theertha@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-21T14:27:14.533",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": { "app_label": "admin", "model": "logentry" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": { "app_label": "auth", "model": "group" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": { "app_label": "auth", "model": "permission" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": { "app_label": "auth", "model": "user" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": { "app_label": "sessions", "model": "session" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": { "app_label": "backend", "model": "user" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": { "app_label": "backend", "model": "venue" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": { "app_label": "backend", "model": "booking" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": { "app_label": "backend", "model": "child" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": { "app_label": "backend", "model": "module" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": { "app_label": "backend", "model": "profile" }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "zg4jzce989a2yhrfqaz4zk07lu2p5kqn",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQAP-yZ0MKIiw9evcNzbILUjWQlPZk_Ltp0oNeZybzhom2tUxbT8s0C4yg4fTLIvEz1V3Ig-q9KW51Xeao9kQdtqtbk_S6Hu3foFAvMAIalOAlJotkMg5nm4UkO45MiTO6aHXy2dGFtR9YAjoMhrwRp1GCg88XEEM4sw:1wPurn:nQOTH5nzesblqbn7gbcm7Ryuu02woTvCyDaAiyzLHAk",
+      "expire_date": "2026-06-04T09:48:39.102"
+    }
+  },
+  {
+    "model": "backend.venue",
+    "pk": 4,
+    "fields": {
+      "name": "ENGAGEMENT VENUE",
+      "location": "Golden Lotus Resort",
+      "price": 10000,
+      "image": "venues/beautiful_mGJQQQa.jpg",
+      "description": "Engagement program, A Grand Celebration Of Love",
+      "created_at": "2025-05-17T09:45:00"
+    }
+  },
+  {
+    "model": "backend.venue",
+    "pk": 5,
+    "fields": {
+      "name": "PALM SHORE VENUE",
+      "location": "Palm Shore Venue",
+      "price": 8000,
+      "image": "venues/floral.jpg",
+      "description": "Palm Shore Venue - This is our special program",
+      "created_at": "2025-05-18T03:49:00"
+    }
+  },
+  {
+    "model": "backend.venue",
+    "pk": 8,
+    "fields": {
+      "name": "WEDDING VENUE",
+      "location": "Royal palace",
+      "price": 17500,
+      "image": "venues/freepik3_xGmjuFE.jpeg",
+      "description": "Luxury wedding and Royal theme",
+      "created_at": "2025-05-17T03:49:00"
+    }
+  },
+  {
+    "model": "backend.booking",
+    "pk": 2,
+    "fields": {
+      "customer_name": "Riya Fathima",
+      "customer_email": "riyaf8052@gmail.com",
+      "customer_phone": "9645968989",
+      "venue": 5,
+      "booking_date": "2026-04-11",
+      "guests": 2,
+      "total_amount": 5000,
+      "status": "Confirmed",
+      "created_at": "2026-05-20T12:54:04.988"
+    }
+  },
+  {
+    "model": "backend.booking",
+    "pk": 3,
+    "fields": {
+      "customer_name": "Aysha",
+      "customer_email": "ayshashahna1234@gmail.com",
+      "customer_phone": "6238445512",
+      "venue": 4,
+      "booking_date": "2027-12-02",
+      "guests": 3,
+      "total_amount": 6600,
+      "status": "Pending",
+      "created_at": "2026-05-20T14:22:47.697"
+    }
+  },
+  {
+    "model": "backend.booking",
+    "pk": 11,
+    "fields": {
+      "customer_name": "Manu",
+      "customer_email": "manu1234@gmail.com",
+      "customer_phone": "9985782256",
+      "venue": 4,
+      "booking_date": "2026-02-07",
+      "guests": 6,
+      "total_amount": 9000,
+      "status": "Cancelled",
+      "created_at": "2026-05-20T14:28:27.146"
+    }
+  }
+]
