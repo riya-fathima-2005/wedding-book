@@ -30,6 +30,7 @@
 <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#5bbad5">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 {% endcomment %}
     
     <!-- Material Design Icons -->
@@ -161,35 +162,38 @@
 }
 
 /* ACTION BUTTONS */
+/* ACTION ICONS */
 
 .action-btn{
-    width:38px;
-    height:38px;
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:8px;
+
     text-decoration:none;
-    margin-right:6px;
-    transition:.3s;
-}
 
-.action-btn.edit{
-    background:#111;
-    color:#fff;
-}
-
-.action-btn.edit:hover{
-    background:#333;
-}
-
-.action-btn.delete{
-    background:#f2f2f2;
     color:#111;
+
+    font-size:20px;
+
+    margin-right:18px;
+
+    transition:.3s ease;
+
 }
 
-.action-btn.delete:hover{
-    background:#ddd;
+.action-btn i{
+
+    color:#111;
+
+}
+
+.action-btn.edit:hover i{
+
+    color:#000;
+
+}
+
+.action-btn.delete:hover i{
+
+    color:#d32f2f;
+
 }
 
 /* EMPTY */

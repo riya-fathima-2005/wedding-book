@@ -189,31 +189,34 @@
 
                     <!-- ACTIONS -->
 
-                    <td>
+                   <td>
 
-                        <div class="d-flex gap-2">
+    <div class="action-buttons">
 
-                            <!-- EDIT -->
+        <!-- EDIT -->
 
-                            <a href="{% url 'edit_allusergroups' group.id %}"
-                               class="btn btn-sm ">
+        <a href="{% url 'edit_allusergroups' group.id %}"
+           class="btn btn-lg"
+           title="Edit">
 
-                                <i class="fa-solid fa-pen"></i>
+            <i class="mdi mdi-pencil"></i>
 
-                            </a>
+        </a>
 
-                            <!-- DELETE -->
+        <!-- DELETE -->
 
-                            <a href="{% url 'delete_group' group.id %}"
-                               class="btn btn-sm ">
+        <a href="{% url 'delete_group' group.id %}"
+           class="btn btn-lg"
+           title="Delete"
+           onclick="return confirm('Are you sure you want to delete this group?');">
 
-                                <i class="fa-solid fa-trash"></i>
+            <i class="mdi mdi-delete"></i>
 
-                            </a>
+        </a>
 
-                        </div>
+    </div>
 
-                    </td>
+</td>
 
                 </tr>
 

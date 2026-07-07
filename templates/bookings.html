@@ -96,36 +96,41 @@
 
                 <!-- ACTION BUTTONS -->
 
-                <td class="action-buttons">
+               <td>
 
-                    <!-- VIEW -->
+    <div class="action-buttons">
 
-                    <a
-                        href="{% url 'view_booking' booking.id %}"
-                         class="btn "
-                    >
-                        <i class="fa-solid fa-eye"></i>
-                    </a>
+        <!-- VIEW -->
+        <a href="{% url 'view_booking' booking.id %}"
+           class="btn btn-lg"
+           title="View">
 
-                    <!-- EDIT -->
+            <i class="mdi mdi-eye"></i>
 
-                    <a
-                        href="{% url 'edit_booking' booking.id %}"
-                         class="btn "
-                    >
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
+        </a>
 
-                    <!-- DELETE -->
+        <!-- EDIT -->
+        <a href="{% url 'edit_booking' booking.id %}"
+           class="btn btn-lg"
+           title="Edit">
 
-                    <a
-                        href="{% url 'delete_booking' booking.id %}"
-                        class="btn "
-                    >
-                        <i class="fa-solid fa-trash"></i>
-                    </a>
+            <i class="mdi mdi-pencil"></i>
 
-                </td>
+        </a>
+
+        <!-- DELETE -->
+        <a href="{% url 'delete_booking' booking.id %}"
+           class="btn btn-lg"
+           title="Delete"
+           onclick="return confirm('Are you sure you want to delete this booking?');">
+
+            <i class="mdi mdi-delete"></i>
+
+        </a>
+
+    </div>
+
+</td>
 
             </tr>
 

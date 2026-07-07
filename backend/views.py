@@ -1825,13 +1825,33 @@ def add_page(request):
 
 def edit_page(request, id):
 
-    page = Page.objects.get(id=id)
+    page = get_object_or_404(Page, id=id)
+
+    if request.method == "POST":
+
+        form = PageForm(
+            request.POST,
+            request.FILES,
+            instance=page
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("pages")
+
+    else:
+
+        form = PageForm(instance=page)
 
     return render(
         request,
-        "edit_page.html",
+        "add_page.html",
         {
+            "form": form,
             "page": page,
+            "is_edit": True,
         },
     )
 from django.shortcuts import redirect
