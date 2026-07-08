@@ -163,12 +163,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # ADD THIS ↓↓↓
 LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/admin/"
-LOGOUT_REDIRECT_URL = "/login/"
+LOGIN_REDIRECT_URL = "/google-login-success/"
+LOGOUT_REDIRECT_URL = "https://wedding-book-swart.vercel.app/"
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
-LOGIN_REDIRECT_URL = "https://wedding-book-swart.vercel.app/"
 LOGOUT_REDIRECT_URL = "https://wedding-book-swart.vercel.app/"
 
 REST_FRAMEWORK = {
