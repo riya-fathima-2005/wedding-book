@@ -219,6 +219,7 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = False
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://wedding-book.onrender.com",
     "https://wedding-book-swart.vercel.app",
 ]
 

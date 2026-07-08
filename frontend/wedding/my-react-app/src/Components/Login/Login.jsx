@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../assets/Style/Login.css";
 import logo from "../../assets/Images/logo.png";
@@ -15,7 +15,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   // HANDLE LOGIN
  const handleSubmit = async (e) => {
@@ -197,10 +196,10 @@ const response = await fetch(
 <button
   type="button"
   className="google-btn"
-  onClick={() =>
+  onClick={() => {
     window.location.href =
-    "https://wedding-book.onrender.com/accounts/google/login/";
-  }
+      "https://wedding-book.onrender.com/accounts/google/login/";
+  }}
 >
   <img
     src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"

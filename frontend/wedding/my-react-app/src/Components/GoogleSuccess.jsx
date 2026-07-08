@@ -16,10 +16,12 @@ function GoogleSuccess() {
 
       navigate("/");
       window.location.reload();
+    } else {
+      navigate("/login");
     }
-  }, [navigate]);
+  }, []);
 
-  return <p>Logging you in...</p>;
+  return <h2>Logging in...</h2>;
 }
 
 export default GoogleSuccess;
