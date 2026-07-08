@@ -165,7 +165,11 @@ AUTH_PASSWORD_VALIDATORS = [
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/login/"
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
+
+LOGIN_REDIRECT_URL = "https://wedding-book-swart.vercel.app/"
+LOGOUT_REDIRECT_URL = "https://wedding-book-swart.vercel.app/"
 
 REST_FRAMEWORK = {
 

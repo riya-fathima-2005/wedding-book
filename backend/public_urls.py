@@ -32,6 +32,12 @@ path('accounts/', include('allauth.urls')),
     name="wedding-detail"
 ),
 
+path(
+    "google-login-success/",
+    views.google_login_success,
+    name="google_login_success",
+),
+
     path(
     "create-payment/",
     views.create_payment,

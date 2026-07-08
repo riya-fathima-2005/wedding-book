@@ -15,6 +15,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // HANDLE LOGIN
  const handleSubmit = async (e) => {
@@ -100,6 +101,23 @@ const response = await fetch(
     );
   }
 
+  useEffect(() => {
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const access = params.get("access");
+  const refresh = params.get("refresh");
+
+  if (access) {
+    localStorage.setItem("token", access);
+    localStorage.setItem("refresh", refresh);
+
+    navigate("/");
+  }
+}, []);
+
+
   return (
 
     <div className="login-container">
@@ -181,7 +199,7 @@ const response = await fetch(
   className="google-btn"
   onClick={() =>
     window.location.href =
-      "https://wedding-book.onrender.com/accounts/google/login/"
+    "https://wedding-book.onrender.com/accounts/google/login/";
   }
 >
   <img

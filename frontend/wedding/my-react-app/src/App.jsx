@@ -24,6 +24,7 @@ import Hostdetails from "./Components/Howhost/Hostdetails";
 import VenueNearby from "./Components/Venue/VenueNearby";
 import NotFound from "./Components/NotFound";
 import DynamicPage from "./Components/DynamicPage";
+import GoogleSuccess from "./Components/GoogleSuccess";
 
 
 // AUTH
@@ -150,6 +151,10 @@ const isNotFound =
 
           
         />
+        <Route
+  path="/google-success"
+  element={<GoogleSuccess />}
+/>
 
         {/* VENUE GALLERY */}
         <Route path="/venuegallary" element={<Venuegallary />} />

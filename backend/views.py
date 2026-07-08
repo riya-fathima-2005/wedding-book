@@ -1,5 +1,7 @@
 from urllib import request
 from .models import Page, Payment
+from django.shortcuts import redirect
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
@@ -1901,3 +1903,25 @@ def single_page_api(request, slug):
     }
 
     return JsonResponse(data)
+
+
+
+from rest_framework_simplejwt.tokens import RefreshToken
+
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+
+    return {
+        "refresh": str(refresh),
+        "access": str(refresh.access_token),
+    }
+
+def google_login_success(request):
+    if request.user.is_authenticated:
+        tokens = get_tokens_for_user(request.user)
+
+        return redirect(
+            f"https://wedding-book-swart.vercel.app/google-success?access={tokens['access']}&refresh={tokens['refresh']}"
+        )
+
+    return redirect("https://wedding-book-swart.vercel.app/login")
