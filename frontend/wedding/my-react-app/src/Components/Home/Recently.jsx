@@ -51,15 +51,21 @@ const Recentwed = () => {
   className="col-md-4 d-flex justify-content-center mb-4"
   key={wedding.id}
 >
-  <div
-    className="card card-overlay text-center border-0 card-service no-focus-border"
-    onClick={() => navigate(`/wedding-details/${wedding.id}`)}
-  >
+ <div
+  className="card card-overlay text-center border-0 card-service no-focus-border"
+  style={{
+    borderRadius: "20px",
+    overflow: "hidden",
+  }}
+  onClick={() => navigate(`/wedding-details/${wedding.id}`)}
+>
     <img
       src={wedding.profile_image}
       alt="Wedding"
       className="card-img"
     />
+
+    
 
     <div className="card-img-overlay d-flex flex-column justify-content-end text-center text-white">
 

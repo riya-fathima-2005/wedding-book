@@ -52,7 +52,14 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'cloudinary',
     'cloudinary_storage',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+     'django_extensions',
 ]
+SITE_ID = 1
 
 CKEDITOR_5_CONFIGS = {
     'extends': {
@@ -78,11 +85,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware', 
 ]
 
 ROOT_URLCONF = 'myproject.urls'
 
-TEMPLATES = [
+TEMPLATES = [   
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],

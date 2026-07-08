@@ -1,9 +1,10 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 from .views import ProfileAPIView, ChangePasswordAPIView, WeddingListCreateView
 
 
 urlpatterns = [
+path('accounts/', include('allauth.urls')),
 
     path('', views.index, name='index'),
 

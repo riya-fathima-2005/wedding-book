@@ -169,10 +169,27 @@ const response = await fetch(
 
         {/* BUTTON */}
         <button type="submit">
+  Login
+</button>
 
-          Login
+<div>
+  <span>OR</span>
+</div>
 
-        </button>
+<button
+  type="button"
+  className="google-btn"
+  onClick={() =>
+    window.location.href =
+      "https://wedding-book.onrender.com/accounts/google/login/"
+  }
+>
+  <img
+    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+    alt="Google"
+  />
+  Continue with Google
+</button>
 
         {/* SIGNUP LINK */}
         <div className="signup-text">

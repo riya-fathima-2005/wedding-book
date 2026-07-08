@@ -2,14 +2,17 @@
    PAGE
 ==================================== */
 
-.contact-page {
-  background: #f8f5f2;
-  padding-bottom: 120px;
-  overflow: hidden;
-  margin-left: 100px;
-  margin-right: 100px;
-  width: 1360px;
-  margin-left: 77px;
+.contact-page{
+    background:#f8f5f2;
+    padding-bottom:120px;
+    overflow:hidden;
+
+    width:100%;
+    max-width:1400px;
+
+    margin:0 auto;
+    padding-left:20px;
+    padding-right:20px;
 }
 
 /* ====================================

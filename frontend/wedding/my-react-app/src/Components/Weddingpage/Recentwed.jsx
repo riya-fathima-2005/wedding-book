@@ -76,12 +76,16 @@ const Recentwed = () => {
   key={wedding.id}
 >
   <div
-    className="card card-overlay text-center border-0 card-service no-focus-border"
-    onClick={() => {
+  className="card card-overlay text-center border-0 card-service no-focus-border"
+  style={{
+    borderRadius: "20px",
+    overflow: "hidden",
+  }}
+  onClick={() => {
     alert(`ID = ${wedding.id}`);
     navigate(`/wedding-details/${wedding.id}`);
-}}
-  >
+  }}
+>
 
     {wedding.profile_image ? (
       <img
