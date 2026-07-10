@@ -53,7 +53,7 @@ const handleViewVenue = (id) => {
         </div>
       )}
 
-      <div className="container">
+      <div className="container venue-container">
         <h2 className="venue-main-title">
           Find Your Wedding Venue
         </h2>

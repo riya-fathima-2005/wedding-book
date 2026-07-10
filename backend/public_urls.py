@@ -1,6 +1,8 @@
 from django.urls import include, path
 from . import views
 from .views import ProfileAPIView, ChangePasswordAPIView, WeddingListCreateView
+from rest_framework.routers import DefaultRouter
+from .views import WeddingCardViewSet
 
 
 urlpatterns = [
@@ -31,6 +33,7 @@ path('accounts/', include('allauth.urls')),
     views.WeddingDetailView.as_view(),
     name="wedding-detail"
 ),
+
 
 path(
     "google-login-success/",
@@ -72,4 +75,15 @@ path(
     name="single_page_api",
 ),
 
+
+
+
 ]
+router = DefaultRouter()
+router.register(
+    r'api/wedding-cards',
+    WeddingCardViewSet,
+    basename='wedding-card'
+)
+
+urlpatterns += router.urls

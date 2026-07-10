@@ -9,7 +9,7 @@ import "../../assets/Style/Gallerygall.css"
 const Gallerygall = () => {
     return (
         <div>
-            <div className='container py-4'>
+            <div className='container py-4 '>
                 <h2 className='text-center mt-5 ourgallery'>Our Gallery</h2>
 
                 <p className='text-center mb-5 oursub'>
@@ -17,6 +17,7 @@ const Gallerygall = () => {
                     events curated by HoD, where every picture tells a story of love,
                     beauty, and timeless celebration.
                 </p>
+                
                 <div className="row g-3">
                     <div className="col-md-8 decor">
                         <img src={decor} alt="decor" className="img-fluid w-100" />

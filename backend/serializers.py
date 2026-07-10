@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Venue, Booking, Wedding
+from .models import Venue, Booking, Wedding, WeddingCard
 
 
 from .models import VenueMap
@@ -48,4 +48,9 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = '__all__'
 
+
+class WeddingCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WeddingCard
+        fields = "__all__"
         

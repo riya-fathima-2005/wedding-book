@@ -4,6 +4,9 @@ from django.shortcuts import redirect
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from django.shortcuts import render, redirect, get_object_or_404
+from .models import Wedding
+
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from rest_framework.permissions import AllowAny
 from .models import VenueMap
@@ -60,6 +63,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
         
+from rest_framework import viewsets
+from .models import WeddingCard
+from .serializers import WeddingCardSerializer
 
 
 # index
@@ -1314,14 +1320,12 @@ def allusergroups(request):
             }
         )
 
-
 def add_allusergroups(request):
 
         return render(
             request,
             'add_allusergroups.html'
         )
-
 
 def create_groups(request):
 
@@ -1601,7 +1605,6 @@ def blog_list(request):
     blogs = Blog.objects.all().order_by(
         "-created_at"
     )
-
     return render(
         request,
         "blog_list.html",
@@ -1925,3 +1928,174 @@ def google_login_success(request):
         )
 
     return redirect("https://wedding-book-swart.vercel.app/login")
+
+
+
+class WeddingCardViewSet(viewsets.ModelViewSet):
+    queryset = WeddingCard.objects.all().order_by("-created_at")
+    serializer_class = WeddingCardSerializer
+
+
+#  ====================WeddingCard========================
+
+
+def wedding_cards(request):
+    cards = WeddingCard.objects.all()
+    return render(
+        request,
+        'wedding_cards.html',
+        {'cards': cards}
+    )
+def add_wedding_card(request):
+    if request.method == "POST":
+        WeddingCard.objects.create(
+            bride_name=request.POST.get("bride_name"),
+            groom_name=request.POST.get("groom_name"),
+            location=request.POST.get("location"),
+            wedding_date=request.POST.get("wedding_date"),
+            description=request.POST.get("description"),
+            image=request.FILES.get("image"),
+        )
+        return redirect("wedding_cards")
+
+    return render(
+        request,
+        "add_wedding_card.html"
+    )
+def edit_wedding_card(request, id):
+    card = WeddingCard.objects.get(id=id)
+
+    if request.method == "POST":
+        card.bride_name = request.POST.get("bride_name")
+        card.groom_name = request.POST.get("groom_name")
+        card.location = request.POST.get("location")
+        card.wedding_date = request.POST.get("wedding_date")
+        card.description = request.POST.get("description")
+
+        if request.FILES.get("image"):
+            card.image = request.FILES.get("image")
+
+        card.save()
+
+        return redirect("wedding_cards")
+
+    return render(
+        request,
+        "edit_wedding_card.html",
+        {"card": card},
+    )
+def delete_wedding_card(request, id):
+    card = WeddingCard.objects.get(id=id)
+    card.delete()
+
+    return redirect("wedding_cards")
+
+def add_wedding_card(request):
+    if request.method == "POST":
+        WeddingCard.objects.create(
+            bride_name=request.POST.get("bride_name"),
+            groom_name=request.POST.get("groom_name"),
+            location=request.POST.get("location"),
+            wedding_date=request.POST.get("wedding_date"),
+            description=request.POST.get("description"),
+            image=request.FILES.get("image"),
+        )
+        return redirect("wedding_cards")
+
+    return render(request, "add_wedding_card.html")
+
+
+def wedding_list(request):
+    weddings = Wedding.objects.all().order_by("-created_at")
+
+    return render(
+        request,
+        "wedding_list.html",
+        {"weddings": weddings},
+    )
+def add_wedding(request):
+    if request.method == "POST":
+        Wedding.objects.create(
+            user=request.user,
+            role="host",
+            firstname=request.POST.get("firstname"),
+            lastname=request.POST.get("lastname"),
+            partner_firstname=request.POST.get("partner_firstname"),
+            partner_lastname=request.POST.get("partner_lastname"),
+            email=request.POST.get("email"),
+            phone=request.POST.get("phone"),
+            wedding_date=request.POST.get("wedding_date"),
+            wedding_time=request.POST.get("wedding_time"),
+            description=request.POST.get("description"),
+            profile_image=request.FILES.get("profile_image"),
+            food_type="",
+            alcohol_served="",
+            language="",
+            dress_code="",
+        )
+
+        return redirect("wedding_list")
+
+    return render(request, "add_wedding.html")
+
+
+def edit_wedding(request, id):
+    wedding = get_object_or_404(
+        Wedding,
+        id=id
+    )
+
+    if request.method == "POST":
+        wedding.firstname = request.POST.get("firstname")
+        wedding.lastname = request.POST.get("lastname")
+        wedding.partner_firstname = request.POST.get(
+            "partner_firstname"
+        )
+        wedding.partner_lastname = request.POST.get(
+            "partner_lastname"
+        )
+        wedding.email = request.POST.get("email")
+        wedding.phone = request.POST.get("phone")
+        wedding.wedding_date = request.POST.get(
+            "wedding_date"
+        )
+        wedding.wedding_time = request.POST.get(
+            "wedding_time"
+        )
+        wedding.description = request.POST.get(
+            "description"
+        )
+
+        if request.FILES.get("profile_image"):
+            wedding.profile_image = request.FILES.get(
+                "profile_image"
+            )
+
+        wedding.save()
+
+        return redirect("wedding_list")
+
+    return render(
+        request,
+        "edit_wedding.html",
+        {"wedding": wedding}
+    )
+
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Wedding
+
+def delete_wedding(request, id):
+    wedding = get_object_or_404(
+        Wedding,
+        id=id
+    )
+
+    if wedding.profile_image:
+        wedding.profile_image.delete(
+            save=False
+        )
+
+    wedding.delete()
+
+    return redirect("wedding_list")

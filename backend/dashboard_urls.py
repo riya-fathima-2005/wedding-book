@@ -46,4 +46,65 @@ path('edit_allusergroups/<int:id>/', views.edit_allusergroups, name='edit_alluse
 path('delete-group/<int:id>/', views.delete_group, name='delete_group'),
 path( "has-paid/<int:wedding_id>/", views.has_paid,name="has_paid"),
 path("create-payment/", views.create_payment),
+
+
+path(
+    "wedding-cards/",
+    views.wedding_cards,
+    name="wedding_cards"
+),
+
+path(
+    "add-wedding-card/",
+    views.add_wedding_card,
+    name="add_wedding_card"
+),
+
+path(
+    "edit-wedding-card/<int:id>/",
+    views.edit_wedding_card,
+    name="edit_wedding_card"
+),
+
+path(
+    "delete-wedding-card/<int:id>/",
+    views.delete_wedding_card,
+    name="delete_wedding_card"
+),
+path(
+    "add-wedding-card/",
+    views.add_wedding_card,
+    name="add_wedding_card"
+),
+
+
+
+
+
+
+path(
+    "weddings/",
+    views.wedding_list,
+    name="wedding_list"
+),
+
+path(
+    "add-wedding/",
+    views.add_wedding,
+    name="add_wedding"
+),
+
+path(
+    "edit-wedding/<int:id>/",
+    views.edit_wedding,
+    name="edit_wedding"
+),
+
+path(
+    "delete-wedding/<int:id>/",
+    views.delete_wedding,
+    name="delete_wedding"
+),
+
+
 ]

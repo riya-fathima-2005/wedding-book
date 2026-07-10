@@ -581,3 +581,21 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+
+        from django.db import models
+
+class WeddingCard(models.Model):
+    bride_name = models.CharField(max_length=100)
+    groom_name = models.CharField(max_length=100)
+    location = models.CharField(max_length=200)
+    wedding_date = models.DateField()
+    description = models.TextField()
+    image = models.ImageField(upload_to="wedding_cards/")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.bride_name} & {self.groom_name}"
+    

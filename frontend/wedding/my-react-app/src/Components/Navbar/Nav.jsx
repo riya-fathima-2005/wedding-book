@@ -51,12 +51,11 @@ const Nav = () => {
     setUser(null);
   };
 
-  useEffect(() => {
+useEffect(() => {
   axios
-    axios.get("https://wedding-book.onrender.com/api/pages/")
+    .get("https://wedding-book.onrender.com/api/pages/")
     .then((response) => {
       setPages(response.data);
-      console.log(response.data);
     })
     .catch((error) => {
       console.log(error);
