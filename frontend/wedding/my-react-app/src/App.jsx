@@ -130,8 +130,6 @@ const isNotFound =
         <Route path="/:slug" element={<DynamicPage />} />
         
 
-<Route path="/admin" element={<Dashboard />} />
-<Route path="/admin/login" element={<Login />} />
 
 
         {/* AUTH */}
