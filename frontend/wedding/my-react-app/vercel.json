@@ -1,17 +1,21 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/admin",
-      "destination": "https://wedding-book.onrender.com/admin/",
-      "permanent": false
+      "destination": "https://wedding-book.onrender.com/admin/"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://wedding-book.onrender.com/admin/:path*"
     },
     {
       "source": "/django-admin",
-      "destination": "https://wedding-book.onrender.com/django-admin/",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
+      "destination": "https://wedding-book.onrender.com/django-admin/"
+    },
+    {
+      "source": "/django-admin/:path*",
+      "destination": "https://wedding-book.onrender.com/django-admin/:path*"
+    },
     {
       "source": "/api/:match*",
       "destination": "https://wedding-book.onrender.com/api/:match*"

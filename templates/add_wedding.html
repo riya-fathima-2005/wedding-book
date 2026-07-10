@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Add Wedding</h3>
+
+            <a
+                href="{% url 'wedding_list' %}"
+                class="btn btn-outline-dark"
+            >
+                Back
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                {% csrf_token %}
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Bride First Name</label>
+
+                        <input
+                            type="text"
+                            name="firstname"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Bride Last Name</label>
+
+                        <input
+                            type="text"
+                            name="lastname"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Groom First Name</label>
+
+                        <input
+                            type="text"
+                            name="partner_firstname"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Groom Last Name</label>
+
+                        <input
+                            type="text"
+                            name="partner_lastname"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Wedding Date</label>
+
+                        <input
+                            type="date"
+                            name="wedding_date"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Wedding Time</label>
+
+                        <input
+                            type="time"
+                            name="wedding_time"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Venue</label>
+
+                        <select
+                            name="venue"
+                            class="form-control"
+                        >
+                            <option value="">
+                                Select Venue
+                            </option>
+
+                            {% for venue in venues %}
+                            <option value="{{ venue.id }}">
+                                {{ venue.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Profile Image</label>
+
+                        <input
+                            type="file"
+                            name="profile_image"
+                            class="form-control"
+                        >
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label>Description</label>
+
+                        <textarea
+                            name="description"
+                            rows="5"
+                            class="form-control"
+                        ></textarea>
+                    </div>
+
+                </div>
+<div></div>
+                <button
+                    type="submit"
+                    class="btn btn-dark px-5"
+                >
+                    Save Wedding
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
